@@ -2,8 +2,7 @@
 <div>
     <b-navbar toggleable="lg" type="dark" class="bg">
     <b-navbar-brand href="#">
-        <img src="../assets/ffycnic.png">
-        <img src="../assets/ffycniclogo.png">
+        <img src="../assets/img/ffycniclogo.png">
     </b-navbar-brand>
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -46,8 +45,7 @@ export default {
     background-color: #1bb1e7;
 }
 img {
-    height:15%;
-    width:15%;
+    width:25%;
     object-fit:cover;
 }
 </style>
