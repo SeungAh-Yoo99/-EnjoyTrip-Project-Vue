@@ -1,7 +1,7 @@
 <template>
     <div class="d-flex flex-column min-vh-100">
         <header-component></header-component>
-        <login-component class="my-auto center"></login-component>
+        <join-component class="my-auto"></join-component>
         <footer-component class="mt-auto"></footer-component>
     </div>
 </template>
@@ -9,17 +9,18 @@
 <script>
 import HeaderComponent from '../components/HeaderComponent.vue'
 import FooterComponent from '../components/FooterComponent.vue'
-import LoginComponent from '../components/LoginComponent.vue'
+import JoinComponent from '../components/JoinComponent.vue'
 
 export default {
     name: 'LoginView',
     components :{
         HeaderComponent,
         FooterComponent,
-        LoginComponent
+        JoinComponent
     }
 }
 </script>
 
 <style>
+
 </style>
