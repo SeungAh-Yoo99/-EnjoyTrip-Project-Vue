@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import TestView from '../views/TestView.vue'
+import CategoryAttractionView from '../views/CategoryAttractionView.vue'
+
 import LoginView from '../views/LoginView.vue'
 import JoinView from '../views/JoinView.vue'
 
@@ -11,6 +13,12 @@ const routes = [
     path: '/',
     name: 'test',
     component: TestView
+  },
+  {
+
+    path: '/categorysearch',
+    name: 'category',
+    component: CategoryAttractionView
   },
   {
     path: '/login',
