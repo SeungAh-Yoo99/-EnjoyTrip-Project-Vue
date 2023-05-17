@@ -1,8 +1,7 @@
 <template>
 <div>
-    <b-navbar toggleable="lg" type="dark" variant="info">
+    <b-navbar toggleable="lg" type="dark" class="bg">
     <b-navbar-brand href="#">EnjoyTrip</b-navbar-brand>
-
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
@@ -40,7 +39,9 @@ export default {
 </script>
 
 <style>
-
+.bg{
+    background-color: #1bb1e7;
+}
 </style>
 
 

@@ -23,7 +23,7 @@ export default {
         return{
             mail : 'xavier.seignard+drangies@gmail.com',
             phone : '06.00.00.00.00',
-            mention : '2018 | mentions légales'
+            mention : '2023 | mentions légales'
         };
     }
 }
@@ -44,7 +44,7 @@ body{
   margin-top:20px;
   width:100vw;
   color:white;
-  background-color:#292354;
+  background-color:#1bb1e7;
   display:flex;
   flex-direction:column;
   align-items:center;
