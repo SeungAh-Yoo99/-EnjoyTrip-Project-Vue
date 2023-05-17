@@ -8,7 +8,9 @@
 
     <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
-        <b-nav-item href="#">여행지 보기</b-nav-item>
+            <b-nav-item>
+                <router-link to='/categorysearch'>여행지 보기</router-link>
+            </b-nav-item>
         <b-nav-item href="#">여행 코스</b-nav-item>
         <b-nav-item href="#">공지사항</b-nav-item>
         </b-navbar-nav>
