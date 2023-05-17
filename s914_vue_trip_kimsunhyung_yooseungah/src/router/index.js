@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import TestView from '../views/TestView.vue'
 import CategoryAttractionView from '../views/CategoryAttractionView.vue'
 
+import LoginView from '../views/LoginView.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -12,9 +14,15 @@ const routes = [
     component: TestView
   },
   {
+
     path: '/categorysearch',
     name: 'category',
     component: CategoryAttractionView
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
   }
 ]
 
