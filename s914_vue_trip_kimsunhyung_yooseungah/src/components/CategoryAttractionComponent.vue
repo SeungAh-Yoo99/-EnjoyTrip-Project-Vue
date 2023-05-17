@@ -1,6 +1,11 @@
     <template>
         <div class="container">
+            <div class="pad">
+
+            </div>
+            
             <div>
+                
                 <div>
                     <h3>여행지 찾기</h3>
                 </div>
@@ -42,42 +47,7 @@
                 <div>
                     <h3>인기 여행지 추천</h3>
                 </div>
-
-                asdfkljasdf<br>
-
-                asdfkljasdf<br>
-
-                asdfkljasdf<br>
-
-                asdfkljasdf<br>
-
-                asdfkljasdf<br>
-
-                asdfkljasdf<br>
-
-                asdfkljasdf<br>
-
-                asdfkljasdf<br>
-                
-                <!-- <div>
-                    <b-card
-                        title="Card Title"
-                        img-src="https://picsum.photos/600/300/?image=25"
-                        img-alt="Image"
-                        img-top
-                        tag="article"
-                        style="max-width: 20rem;"
-                        class="mb-2"
-                    >
-                        <b-card-text>
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                        </b-card-text>
-
-                        <b-button href="#">Go somewhere</b-button>
-                    </b-card>
-                </div>  -->
-
-
+                <div class="pad"></div>
             </div>
 
         </div>
@@ -104,7 +74,9 @@
                 else if(this.form.type==null){
                     alert("카테고리를 선택하세요.");
                 }else{
-                    this.$router.push("/");
+                    alert(this.form.sido+" "+this.form.type);
+                    
+                    this.$router.push({name:"list",params:{form : { sido : this.form.sido, type: this.form.type}}});
                 }
             }
         }
@@ -116,7 +88,6 @@
         font-family: arial;
         font-size: 24px;
         margin: 100px auto;
-        height: 200px;
     }
     .parent {
         margin:50px auto;

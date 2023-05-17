@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import TestView from '../views/TestView.vue'
 import CategoryAttractionView from '../views/CategoryAttractionView.vue'
-
+import AttractionListView from '../views/AttractionListView.vue'
 import LoginView from '../views/LoginView.vue'
 
 Vue.use(VueRouter)
@@ -23,6 +23,11 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginView
+  },
+  {
+    path: "/attractionlist/:sido?/:type",
+    name: 'list',
+    component: AttractionListView
   }
 ]
 

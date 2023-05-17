@@ -1,5 +1,5 @@
 <template>
-    <div id="container">
+    <footer id="container">
         <div id="contacts">
             <div id="contacts--contact">
                 <p>{{ mail }}</p>
@@ -14,7 +14,7 @@
             <div id="mentions">
             <p>{{ mention }}</p>
         </div>
-    </div>
+    </footer>
 </template>
 
 <script>
