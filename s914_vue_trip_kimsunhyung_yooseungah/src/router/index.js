@@ -26,7 +26,7 @@ const routes = [
     component: LoginView
   },
   {
-    path: "/attractionlist/:sido?/:type",
+    path: "/attractionlist/:form",
     name: 'list',
     component: AttractionListView
   },
