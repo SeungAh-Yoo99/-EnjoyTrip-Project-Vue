@@ -6,9 +6,9 @@
                 <p>{{ phone }}</p>
             </div>
             <div id="contacts--social">
-                <div><img src="../assets/ssafyimg.png" class="profile"></div>
-                <div><img src="../assets/sunhyung.jpg" class="profile"></div>
-                <div><img src="../assets/seungah.jpeg" class="profile"></div>
+                <div><img src="../assets/img/ssafyimg.png" class="profile"></div>
+                <div><img src="../assets/img/sunhyung.jpg" class="profile"></div>
+                <div><img src="../assets/img/seungah.jpeg" class="profile"></div>
             </div>
             </div>
             <div id="mentions">
@@ -64,8 +64,8 @@ body{
   justify-content : space-between;
 }
 #contacts--social div{
-  height:30px;
-  width:30px;
+  height:40px;
+  width:40px;
   background-color:white;
   overflow: hidden;
   border-radius:50%;
