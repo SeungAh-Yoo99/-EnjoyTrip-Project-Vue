@@ -1,7 +1,7 @@
 <template>
     <div class="d-flex flex-column min-vh-100">
         <header-component></header-component>
-        <login-component class="my-auto"></login-component>
+        <login-component class="my-auto center"></login-component>
         <footer-component class="mt-auto"></footer-component>
     </div>
 </template>
@@ -22,5 +22,4 @@ export default {
 </script>
 
 <style>
-
 </style>
