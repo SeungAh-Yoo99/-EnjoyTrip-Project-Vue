@@ -9,13 +9,18 @@
                                 <div class="invalid-feedback">아이디를 입력해 주세요!</div>
                             </div>
                             <div class="forms-inputs mb-4"> <span>Password</span> <input autocomplete="off" type="password" v-model="password" v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured}" v-on:blur="passwordBlured = true">
-                                <div class="invalid-feedback">Password must be 8 character!</div>
+                                <div class="invalid-feedback">비밀번호를 입력해 주세요!</div>
                             </div>
                             <div class="mb-3"> <button v-on:click.stop.prevent="submit" class="btn btn-dark w-100">Login</button> </div>
                         </div>
                         <div class="success-data" v-else>
                             <div class="text-center d-flex flex-column"> <i class='bx bxs-badge-check'></i> <span class="text-center fs-1">You have been logged in <br> Successfully</span> </div>
                         </div>
+                    </div>
+                    <div class="row-vw d-flex link">
+                        <router-link to="/join" class="mx-auto">회원가입</router-link> |
+                        <router-link to="/searchId" class="mx-auto">아이디 찾기</router-link> |
+                        <router-link to="/searchPw" class="mx-auto">비밀번호 찾기</router-link>
                     </div>
                 </div>
             </div>
@@ -67,6 +72,9 @@ export default {
 body{
     background: #000
 }
+a.mx-auto{
+    color: #000;
+}
 .card{
     border: none;
     height: 320px
@@ -103,5 +111,8 @@ body{
 .btn-dark {
     background-color: #231f20;
     border-color: #231f20;
+}
+div.link{
+    margin-top: 15px;
 }
 </style>
