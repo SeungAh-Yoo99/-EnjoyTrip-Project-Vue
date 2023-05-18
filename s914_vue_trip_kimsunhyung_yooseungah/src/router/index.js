@@ -4,6 +4,7 @@ import TestView from '../views/TestView.vue'
 import CategoryAttractionView from '../views/CategoryAttractionView.vue'
 import AttractionListView from '../views/AttractionListView.vue'
 import LoginView from '../views/LoginView.vue'
+import RequirmentView from '../views/RequirmentView.vue'
 import JoinView from '../views/JoinView.vue'
 
 Vue.use(VueRouter)
@@ -33,6 +34,16 @@ const routes = [
   {
     path: '/join',
     name: 'join',
+    component: RequirmentView
+  },
+  {
+    path: '/join/general',
+    name: 'join-general',
+    component: JoinView
+  },
+  {
+    path: '/join/business',
+    name: 'join-business',
     component: JoinView
   }
 ]

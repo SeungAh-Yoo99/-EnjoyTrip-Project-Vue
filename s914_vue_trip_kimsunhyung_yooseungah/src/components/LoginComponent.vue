@@ -5,7 +5,7 @@
                 <div class="col-md-6">
                     <div class="card px-5 py-5" id="form1">
                         <div class="form-data" v-if="!submitted">
-                            <div class="forms-inputs mb-4"> <span>User ID</span> <input autocomplete="off" type="text" v-model="id" v-bind:class="{'form-control':true, 'is-invalid' : !validId(id) && idBlured}" v-on:blur="idBlured = true">
+                            <div class="forms-inputs mb-4"> <span>User ID</span> <input type="text" v-model="id" v-bind:class="{'form-control':true, 'is-invalid' : !validId(id) && idBlured}" v-on:blur="idBlured = true">
                                 <div class="invalid-feedback">아이디를 입력해 주세요!</div>
                             </div>
                             <div class="forms-inputs mb-4"> <span>Password</span> <input autocomplete="off" type="password" v-model="password" v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured}" v-on:blur="passwordBlured = true">
