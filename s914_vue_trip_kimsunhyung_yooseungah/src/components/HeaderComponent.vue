@@ -1,6 +1,7 @@
 <template>
 <div>
     <b-navbar toggleable="lg" type="dark" class="bg">
+<<<<<<< HEAD
     <b-navbar-brand class="navbar-brand-align">
         <router-link to="/" class="logo"><img src="../assets/img/ffycniclogo.png" class="navbar-brand-image"></router-link>
         <b-nav-form>
@@ -13,6 +14,10 @@
                 </b-col>
             </b-row>
         </b-nav-form>
+=======
+    <b-navbar-brand href="#">
+        <img src="../assets/img/ffycniclogo.png" style="width:25%; object-fit:cover;">
+>>>>>>> e7e7896bec4385722e590c67564d1f21382d125c
     </b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -58,6 +63,7 @@ export default {
 .bg{
     background-color: #1bb1e7;
 }
+<<<<<<< HEAD
 img {
     width:25%;
     object-fit:cover;
@@ -83,6 +89,8 @@ img {
     width: 162.56px;
 }
 
+=======
+>>>>>>> e7e7896bec4385722e590c67564d1f21382d125c
 </style>
 
 

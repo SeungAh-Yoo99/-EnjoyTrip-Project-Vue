@@ -6,6 +6,7 @@ import AttractionListView from '../views/AttractionListView.vue'
 import LoginView from '../views/LoginView.vue'
 import RequirmentView from '../views/RequirmentView.vue'
 import JoinView from '../views/JoinView.vue'
+import AttractionDetailView from '../views/AttractionDetailView.vue'
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,12 @@ const routes = [
     path: '/categorysearch',
     name: 'category',
     component: CategoryAttractionView
+  },
+  {
+
+    path: '/attractiondetail/:attraction',
+    name: 'attractiondetail',
+    component: AttractionDetailView
   },
   {
     path: '/login',

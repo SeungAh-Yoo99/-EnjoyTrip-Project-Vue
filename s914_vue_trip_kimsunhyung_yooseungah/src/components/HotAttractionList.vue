@@ -48,7 +48,7 @@
                         <b-col class="col-md-4">
                             <b-card
                                 title="Card Title"
-                                :img-src=src
+                                img-src="http://tong.visitkorea.or.kr/cms/resource/21/2657021_image2_1.jpg"
                                 img-alt="Image"
                                 img-top
                                 tag="article"
