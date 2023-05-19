@@ -6,18 +6,21 @@
                 <h3>{{this.form.sido}} • {{this.form.type}}의 여행 목록</h3>
             </div>
 
-            <div v-for="(attraction,index) in attractions" :key="index" style="margin:50px auto;" @click="goDetail(attraction.id,attraction.lat,attraction.lng)">
+            <div v-for="(attraction,index) in attractions" :key="index" style="margin:50px auto;" >
                 <div class="row">
-                    <div class="col-2">
+                    <div class="col-2" @click="goDetail(attraction.id,attraction.lat,attraction.lng)">
                         <img :src=attraction.src class="w-100">
                     </div>
-                    <div class="col">
+                    <div class="col" @click="goDetail(attraction.id,attraction.lat,attraction.lng)">
                         <div>
                             <h4>{{attraction.title}}</h4>
                         </div>
                         <div>
                             <h5>{{attraction.addr}}</h5>
                         </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button id="btn"> 좋아요</button>
                     </div>
                 </div>
                 <hr>
@@ -101,4 +104,18 @@ export default {
 </script>
 
 <style>
+    #btn {
+    position: relative;
+    background-color: #f1f3f5;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    overflow: hidden;
+  }
 </style>

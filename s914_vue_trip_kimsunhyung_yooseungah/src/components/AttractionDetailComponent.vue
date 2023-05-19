@@ -23,12 +23,11 @@
             <div class="map-wrapper">
             <map-component-vue :lat=lat :lng=lng></map-component-vue>
             </div>
-        </div>        
+        </div> 
       </div>
-
-
-
     </div>
+
+    <div class="pad"></div>
   </div>
 </template>
 
