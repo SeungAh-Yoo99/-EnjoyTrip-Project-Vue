@@ -39,6 +39,7 @@ export default {
                 center:new window.kakao.maps.LatLng(this.lat,this.lng),
                 level:3,
             };
+            console.log("위치 출력한다"+this.lat+" , "+this.lng);
             this.map=new window.kakao.maps.Map(container,options);
             this.loadMaker();
         },

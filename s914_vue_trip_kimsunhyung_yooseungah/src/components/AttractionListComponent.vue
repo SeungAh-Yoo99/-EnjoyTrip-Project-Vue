@@ -3,20 +3,20 @@
         <div class="pad"></div>
         <div>
             <div>
-                <h3>{{this.form.sido}} • {{this.form.type}}의 여행 목록</h3>
+                <h3>{{this.sido_name}} • {{this.content_type_name}}의 여행 목록</h3>
             </div>
 
             <div v-for="(attraction,index) in attractions" :key="index" style="margin:50px auto;" >
                 <div class="row">
-                    <div class="col-2" @click="goDetail(attraction.id,attraction.lat,attraction.lng)">
-                        <img :src=attraction.src class="w-100">
+                    <div class="col-2" @click="goDetail(attraction.content_id,attraction.latitude,attraction.longitude)">
+                       <img :src=attraction.first_image alt="이미지 준비중" class="w-100">
                     </div>
-                    <div class="col" @click="goDetail(attraction.id,attraction.lat,attraction.lng)">
+                    <div class="col" @click="goDetail(attraction.content_id,attraction.latitude,attraction.longitude)">
                         <div>
                             <h4>{{attraction.title}}</h4>
                         </div>
                         <div>
-                            <h5>{{attraction.addr}}</h5>
+                            <h5>{{attraction.addr1}}</h5>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center">
@@ -27,60 +27,21 @@
             </div>
         </div>
 
-        <div>
+        <!-- <div>
             <b-pagination v-model="currentPage" :total-rows="rows" style="justify-content:center;"></b-pagination>
-        </div>
+        </div> -->
     </div>
 </template>
 
 <script>
+
+import http from "@/router/axios-common.js";
 export default {
     data(){
         return{
-            form: {
-                    sido: null,
-                    type:null
-                },
-            attractions: [
-                {
-                    title: "국립 유명산자연휴양림",
-                    addr:"경기도 가평군 설악면 유명산길 79-53",
-                    src:"http://tong.visitkorea.or.kr/cms/resource/77/219377_image2_1.jpg",
-                    id: 125409,
-                    lat: 37.57107346000000000,
-                    lng:127.30237470000000000
-                },
-                {
-                    title: "국립 유명산자연휴양림",
-                    addr:"경기도 가평군 설악면 유명산길 79-53",
-                    src:"http://tong.visitkorea.or.kr/cms/resource/77/219377_image2_1.jpg",
-                    id: 10
-                },
-                {
-                    title: "국립 유명산자연휴양림",
-                    addr:"경기도 가평군 설악면 유명산길 79-53",
-                    src:"http://tong.visitkorea.or.kr/cms/resource/77/219377_image2_1.jpg",
-                    id: 20
-                },
-                {
-                    title: "국립 유명산자연휴양림",
-                    addr:"경기도 가평군 설악면 유명산길 79-53",
-                    src:"http://tong.visitkorea.or.kr/cms/resource/77/219377_image2_1.jpg",
-                    id: 30
-                },
-                {
-                    title: "국립 유명산자연휴양림",
-                    addr:"경기도 가평군 설악면 유명산길 79-53",
-                    src:"http://tong.visitkorea.or.kr/cms/resource/77/219377_image2_1.jpg",
-                    id: 40
-                },
-                {
-                    title: "국립 유명산자연휴양림",
-                    addr:"경기도 가평군 설악면 유명산길 79-53",
-                    src:"http://tong.visitkorea.or.kr/cms/resource/77/219377_image2_1.jpg",
-                    id: 125409
-                }
-            ],
+            sido_name:"",
+            content_type_name:"",
+            attractions: [],
             rows: 100,
             currentPage: 1
         };
@@ -90,12 +51,24 @@ export default {
     },
     methods:{
         getList(form){
-            this.form.sido=form.sido;
-            this.form.type=form.type;
+            this.sido_name=form.sido_name;
+            this.content_type_name=form.content_type_name;
+            console.log(this.sido_name+" "+this.content_type_name);
+            
+            http.get("/api/attraction/search", {
+                    params:{
+                            sido_name: this.sido_name,
+                            content_type_name: this.content_type_name
+                    }
+                        }).then(response => {
+                        this.attractions = response.data;
+                        console.log(this.attractions);
+                        });
+            
         },
-        goDetail(id,lat,lng){
-            alert(id);
-            this.$router.push({name:"attractiondetail",params:{attraction:{id:id,lat:lat,lng:lng}}})
+        goDetail(content_id,latitude,longitude){
+            alert(content_id);
+            this.$router.push({name:"attractiondetail",params:{attraction:{content_id:content_id,latitude:latitude,longitude:longitude}}});
             // this.$router.push('/attractiondetail/'+id);
         }
     }
