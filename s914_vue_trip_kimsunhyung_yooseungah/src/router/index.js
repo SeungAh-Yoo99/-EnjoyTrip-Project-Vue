@@ -7,7 +7,10 @@ import LoginView from '../views/LoginView.vue'
 import RequirmentView from '../views/RequirmentView.vue'
 import JoinView from '../views/JoinView.vue'
 import AttractionDetailView from '../views/AttractionDetailView.vue'
-
+import NoticeListView from '../views/NoticeListView.vue'
+import NoticeInputView from '../views/NoticeInputView.vue'
+import NoticeDetailView from '../views/NoticeDetailView.vue'
+import NoticeModifyView from '../views/NoticeModifyView.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -52,6 +55,26 @@ const routes = [
     path: '/join/business',
     name: 'join-business',
     component: JoinView
+  },
+  {
+    path: '/notice',
+    name: 'noticelist',
+    component: NoticeListView
+  },
+  {
+    path: '/noticeinput',
+    name: 'noticeinput',
+    component: NoticeInputView
+  },
+  {
+    path: '/noticedetail/:notice_id',
+    name: 'noticedetail',
+    component: NoticeDetailView
+  },
+  {
+    path: '/noticemodify/:notice_id',
+    name: 'noticemodify',
+    component: NoticeModifyView
   }
 ]
 
