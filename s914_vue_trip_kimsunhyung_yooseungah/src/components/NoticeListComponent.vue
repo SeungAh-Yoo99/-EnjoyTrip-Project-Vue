@@ -60,11 +60,6 @@ export default {
     },
     computed:{
         isAdmin(){
-            
-            // console.log("session:" + this.$session.get("user").id); //https://sjwiq200.tistory.com/37 세션 저장 및 main.js 설정
-            this.$session.set("user",{id:"admin",role:"admin",pw:"1111"});
-            //console.log("session은요" + this.$session.get("user").id);
-            //this.$session.set("user",{id:"ssafy1",role:"general",pw:"1111"});
             if(this.$session.get("user").role=="admin"){
                 return true;
             }

@@ -3,7 +3,7 @@
     <b-navbar toggleable="lg" type="dark" class="bg">
 
     <b-navbar-brand class="navbar-brand-align">
-        <router-link to="/" class="logo"><img src="../assets/img/ffycniclogo.png" class="navbar-brand-image"></router-link>
+        <img src="../assets/img/ffycniclogo.png" class="navbar-brand-image logo" @click="gotoHome">
         <b-nav-form>
             <b-row no-gutters>
                 <b-col cols="8">
@@ -23,7 +23,9 @@
             <b-nav-item>
                 <router-link to='/categorysearch'>여행지 보기</router-link>
             </b-nav-item>
-            <b-nav-item href="#">여행 코스</b-nav-item>
+            <b-nav-item>
+                <router-link to='/'>여행 코스</router-link>
+            </b-nav-item>
             <b-nav-item href="#">
                 <router-link to='/notice'>공지사항</router-link>
             </b-nav-item>
@@ -31,7 +33,7 @@
                 <b-nav-item-dropdown right>
                     <!-- Using 'button-content' slot -->
                     <template #button-content>
-                        <em>User</em>
+                        <em>{{user_name}}님</em>
                     </template>
                     <b-dropdown-item href="#">나의 정보 보기</b-dropdown-item>
                     <b-dropdown-item href="#">로그아웃</b-dropdown-item>
@@ -53,8 +55,20 @@ export default {
     data(){
         return {
             isLoggedIn : false,
+            user_name : '',
         };
-    }
+    },
+    created() {
+		if(this.$session.get("user") != null) {
+            this.isLoggedIn=true;
+            this.user_name=this.$session.get("user").name;
+        }
+	},
+    methods: {
+        gotoHome() {
+            if(this.$route.path !== '/') this.$router.push("/");
+        }
+    },
 }
 </script>
 
@@ -73,9 +87,6 @@ img {
 .input-width{
     width: 200%;
 }
-.navbar-dark .navbar-nav .nav-link {
-    color: #6c757d;
-}
 .navbar-brand-align{
     display: flex;
     justify-content: space-between;
@@ -87,7 +98,16 @@ img {
 .navbar-brand-image{
     width: 162.56px;
 }
+a {
+    color: white;
+}
 
+.navbar-dark .navbar-nav .nav-link em {
+    color: white;
+}
+a[aria-current="page"] {
+  color: #231f20;
+}
 
 </style>
 
