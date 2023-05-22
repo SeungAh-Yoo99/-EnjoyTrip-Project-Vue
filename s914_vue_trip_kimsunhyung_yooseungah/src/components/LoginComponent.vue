@@ -5,16 +5,16 @@
                 <div class="col-md-6">
                     <div class="card px-5 py-5" id="form1">
                         <div class="form-data" v-if="!submitted">
-                            <div class="forms-inputs mb-4"> <span>User ID</span> <input type="text" v-model="id" v-bind:class="{'form-control':true, 'is-invalid' : !validId(id) && idBlured}" v-on:blur="idBlured = true">
+                            <div class="forms-inputs mb-4"> <span>아이디</span> <input type="text" v-model="id" v-bind:class="{'form-control':true, 'is-invalid' : !validId(id) && idBlured}" v-on:blur="idBlured = true">
                                 <div class="invalid-feedback">아이디를 입력해 주세요!</div>
                             </div>
-                            <div class="forms-inputs mb-4"> <span>Password</span> <input autocomplete="off" type="password" v-model="password" v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured}" v-on:blur="passwordBlured = true">
+                            <div class="forms-inputs mb-4"> <span>비밀번호</span> <input autocomplete="off" type="password" v-model="pw" v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(pw) && passwordBlured}" v-on:blur="passwordBlured = true">
                                 <div class="invalid-feedback">비밀번호를 입력해 주세요!</div>
                             </div>
-                            <div class="mb-3"> <button v-on:click.stop.prevent="submit" class="btn btn-dark w-100">Login</button> </div>
+                            <div class="mb-3"> <button v-on:click.stop.prevent="submit" class="btn btn-dark w-100" @click="login">로그인</button> </div>
                         </div>
                         <div class="success-data" v-else>
-                            <div class="text-center d-flex flex-column"> <i class='bx bxs-badge-check'></i> <span class="text-center fs-1">You have been logged in <br> Successfully</span> </div>
+                            <div class="text-center d-flex flex-column"> <i class='bx bxs-badge-check'></i> <span class="text-center fs-1">이미 로그인 하셨습니다. <br> 로그인 완료</span> </div>
                         </div>
                     </div>
                     <div class="row-vw d-flex link">
@@ -29,22 +29,24 @@
 </template>
 
 <script>
+import http from "../axios/axios-common.js";
+
 export default {
     data() {
         return {
-            id : "",
+            id:"",
+            pw:"",
             idBlured : false,
             valid : false,
             submitted : false,
-            password:"",
-            passwordBlured:false
+            passwordBlured:false,
         }
     },
     methods:{
         validate() {
             this.idBlured = true;
             this.passwordBlured = true;
-            if( this.valid(this.id) && this.validPassword(this.password)){
+            if( this.validId(this.id) && this.validPassword(this.pw)){
                 this.valid = true;
             }
         },
@@ -53,8 +55,8 @@ export default {
                 return true;
             }
         },
-        validPassword(password) {
-            if (password.length > 7) {
+        validPassword(pw) {
+            if (pw.length > 0) {
                 return true;
             }
         },
@@ -63,7 +65,20 @@ export default {
             if(this.valid){
                 this.submitted = true;
             }
-        }
+        },
+        login(){
+            alert(this.id + " " + this.pw);
+
+            http.post("/api/user/login", {
+                    id:this.id,
+                    pw:this.pw
+                })
+                .then(response => {
+                    this.$session.set("user", response.data);
+                    this.$router.push("/");
+                })
+                .catch((exp) => alert("login에 실패하였습니다." + exp));
+        },
     }
 }
 </script>
