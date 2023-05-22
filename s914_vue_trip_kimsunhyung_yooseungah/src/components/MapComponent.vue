@@ -14,15 +14,16 @@ export default {
         };
     },
     setup(){},
-    created(){
+    mounted(){
         if(window.kakao && window.kakao.maps){
             this.loadMap();
+            console.log("맵 뜨나");
         }else{
             this.loadScript();
+            console.log("이건가");
         }
         
     },
-    mounted(){},
     unmounted(){},
     methods:{
         loadScript(){
