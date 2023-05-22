@@ -22,7 +22,7 @@
         <div class="col-4">
             
             <div class="map-wrapper">
-            <map-component-vue :lat=attraction.latitude :lng=attraction.longitude></map-component-vue>
+            <map-component-vue :lat=attraction.latitude :lng=attraction.longitude :key="`${attraction.latitude}-${attraction.longitude}`"></map-component-vue>
             </div>
         </div> 
       </div>

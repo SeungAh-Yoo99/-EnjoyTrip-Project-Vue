@@ -10,11 +10,18 @@ export default {
     props:['lat','lng'],
     data(){
         return {
-            map:null
+            map:null,
+            latitude:"",
+            longitude:"",
         };
+    },
+    created(){
+        this.latitude=this.lat;
+        this.longitude=this.lng;
     },
     setup(){},
     mounted(){
+        
         if(window.kakao && window.kakao.maps){
             this.loadMap();
             console.log("맵 뜨나");
@@ -23,6 +30,16 @@ export default {
             console.log("이건가");
         }
         
+    },
+    watch:{
+        lat(newValue){
+            this.latitude=newValue;
+            this.loadMap();
+        },
+        lng(newValue){
+            this.longitude=newValue;
+            this.loadMap();
+        }
     },
     unmounted(){},
     methods:{
@@ -33,13 +50,16 @@ export default {
             document.head.appendChild(script);
         },
         loadMap(){
+            this.latitude=this.lat;
+            this.longitude=this.lng;
             console.log("여기",this.lat,this.lng);
             const container=document.getElementById("map");
             const options={
-                center:new window.kakao.maps.LatLng(this.lat,this.lng),
+                center:new window.kakao.maps.LatLng(this.latitude,this.longitude),
                 level:3,
             };
             console.log("위치 출력한다"+this.lat+" , "+this.lng);
+            console.log("위치 출력?"+this.latitude+" , "+this.longitude);
             this.map=new window.kakao.maps.Map(container,options);
             this.loadMaker();
         },
