@@ -101,8 +101,9 @@ export default {
             http.put("/api/board/modify",{
                 board_id:this.board_id,
                 board_title:this.board_title,
-                board_content:this.board_content,
-                
+                board_content:this.board_content
+                }, {
+                  withCredentials: true
                 }).then(()=>{
                 alert("수정완료");
                 this.$router.push("/boardlist");

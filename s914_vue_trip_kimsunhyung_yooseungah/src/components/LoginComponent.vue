@@ -69,6 +69,8 @@ export default {
             http.post("/api/user/login", {
                     id:this.id,
                     pw:this.pw
+                },{
+                withCredentials: true
                 })
                 .then(response => {
                     if(response.data.id == this.id) {
