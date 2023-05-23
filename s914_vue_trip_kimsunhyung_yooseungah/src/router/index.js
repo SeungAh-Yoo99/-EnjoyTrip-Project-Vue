@@ -11,6 +11,7 @@ import NoticeListView from '../views/NoticeListView.vue'
 import NoticeInputView from '../views/NoticeInputView.vue'
 import NoticeDetailView from '../views/NoticeDetailView.vue'
 import NoticeModifyView from '../views/NoticeModifyView.vue'
+import BoardListView from '../views/BoardListView.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -70,6 +71,11 @@ const routes = [
     path: '/noticemodify/:notice_id',
     name: 'noticemodify',
     component: NoticeModifyView
+  },
+  {
+    path: '/boardlist',
+    name: 'boardlist',
+    component: BoardListView
   }
 ]
 
