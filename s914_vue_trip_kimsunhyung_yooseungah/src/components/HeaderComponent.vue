@@ -26,6 +26,9 @@
             <b-nav-item>
                 <router-link to='/'>여행 코스</router-link>
             </b-nav-item>
+            <b-nav-item>
+                <router-link to='/boardlist'>게시판</router-link>
+            </b-nav-item>
             <b-nav-item href="#">
                 <router-link to='/notice'>공지사항</router-link>
             </b-nav-item>
@@ -62,7 +65,7 @@ export default {
         };
     },
     created() {
-		if(this.$session.get("user") != null && this.$session.get("user").id != '') {
+		if(this.$session.get("user") != null) {
             this.isLoggedIn=true;
             this.user_name=this.$session.get("user").name;
         }
@@ -84,6 +87,7 @@ export default {
                 }
             })
             .catch((exp) => alert(exp + ": 로그아웃 실패"))
+            
         }
     },
 }

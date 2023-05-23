@@ -85,10 +85,11 @@ export default {
             // this.$router.push('/attractiondetail/'+id);
         },
         isLike(content_id){
-            http.get("/api/attraction/islike/"+content_id).then((response=>{
+            console.log("좋아요 버튼 클릭 "+ this.user_id+" "+content_id);
+            http.get("/api/attraction/islike/"+content_id).then(response=>{
                 
-                console.log(response.data);
-            }));
+                 console.log(response.data.result);
+            });
         }
         
     }
