@@ -14,7 +14,6 @@
                             <div class="mb-3"> <button v-on:click.stop.prevent="submit" class="btn btn-dark w-100" @click="login">로그인</button> </div>
                         </div>
                         <div class="success-data" v-else>
-                            <div class="text-center d-flex flex-column"> <i class='bx bxs-badge-check'></i> <span class="text-center fs-1">이미 로그인 하셨습니다. <br> 로그인 완료</span> </div>
                         </div>
                     </div>
                     <div class="row-vw d-flex link">
@@ -67,17 +66,21 @@ export default {
             }
         },
         login(){
-            alert(this.id + " " + this.pw);
-
             http.post("/api/user/login", {
                     id:this.id,
                     pw:this.pw
                 })
                 .then(response => {
-                    this.$session.set("user", response.data);
-                    this.$router.push("/");
+                    if(response.data.id == this.id) {
+                        this.$session.set("user", response.data);
+                        this.$router.push("/");
+                    }
+                    else {
+                        alert("아이디 또는 비밀번호를 잘못 입력했습니다.");
+                        this.$router.go("/login");
+                    }
                 })
-                .catch((exp) => alert("login에 실패하였습니다." + exp));
+                .catch((exp) => alert(exp + ": 로그인 실패"));
         },
     }
 }

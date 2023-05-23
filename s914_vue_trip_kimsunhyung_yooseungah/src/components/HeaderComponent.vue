@@ -36,7 +36,7 @@
                         <em>{{user_name}}님</em>
                     </template>
                     <b-dropdown-item href="#">나의 정보 보기</b-dropdown-item>
-                    <b-dropdown-item href="#">로그아웃</b-dropdown-item>
+                    <b-dropdown-item @click="logout">로그아웃</b-dropdown-item>
                 </b-nav-item-dropdown>
             </div> 
             <div v-else>
@@ -51,15 +51,18 @@
 </template>
 
 <script>
+import http from "../axios/axios-common.js";
+
 export default {
     data(){
         return {
             isLoggedIn : false,
             user_name : '',
+            user_null: {id:''},
         };
     },
     created() {
-		if(this.$session.get("user") != null) {
+		if(this.$session.get("user") != null && this.$session.get("user").id != '') {
             this.isLoggedIn=true;
             this.user_name=this.$session.get("user").name;
         }
@@ -67,6 +70,20 @@ export default {
     methods: {
         gotoHome() {
             if(this.$route.path !== '/') this.$router.push("/");
+        },
+        logout() {
+            http.get("/api/user/logout")
+            .then(response => {
+                if(response.data.result == "logout success") {
+                    this.$session.set("user", this.user_null);
+                    this.isLoggedIn=false;
+                    alert('로그아웃 완료');
+                }
+                else {
+                    alert('로그아웃 실패'); 
+                }
+            })
+            .catch((exp) => alert(exp + ": 로그아웃 실패"))
         }
     },
 }
