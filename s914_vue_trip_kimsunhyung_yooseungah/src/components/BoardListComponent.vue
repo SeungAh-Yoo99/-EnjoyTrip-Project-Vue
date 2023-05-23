@@ -26,10 +26,10 @@
                     <tr v-for="(board, index) in boards" :key="index" :class="{even: index%2==0}"> 
                         <td>{{index+1}}</td>            
                         <td>
-                            {{board.board_title}}
-                            <!-- <div class="router-link-wrapper">
-                            <router-link :to="`/noticedetail/${notice.notice_id}`">{{ notice.notice_title }}</router-link>
-                            </div> -->
+                            
+                            <div class="router-link-wrapper">
+                            <router-link :to="`/boarddetail/${board.board_id}`">{{ board.board_title }}</router-link>
+                            </div>
                         </td>
                         <td>
                             {{board.user_id}}
@@ -62,8 +62,10 @@ export default {
     },
     computed:{
         isUser(){
-
-            return true;
+            if(this.$session.get("user") != null && this.$session.get("user").id != '') {
+                return true;
+            }
+            return false;
         }
     },
     created(){
