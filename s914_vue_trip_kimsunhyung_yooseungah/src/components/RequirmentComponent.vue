@@ -2,7 +2,7 @@
   <div>
     <div class="d-flex justify-content-center">
       <b-button-group size="lg">
-        <router-link to="/join/general">
+        <router-link :to="{name: 'join-detail', params: {role:'member'}}">
           <b-button class="mb-2 button" variant="outline-secondary">
             <b-icon
               icon="person-fill"
@@ -13,7 +13,7 @@
             <h3>일반 회원</h3>
           </b-button>
         </router-link>
-        <router-link to="/join/business">
+        <router-link :to="{name: 'join-detail', params: {role:'business'}}">
           <b-button class="mb-2 button" variant="outline-secondary">
             <b-icon
               icon="people-fill"

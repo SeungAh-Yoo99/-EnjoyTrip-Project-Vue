@@ -47,13 +47,8 @@ const routes = [
     component: RequirmentView
   },
   {
-    path: '/join/general',
-    name: 'join-general',
-    component: JoinView
-  },
-  {
-    path: '/join/business',
-    name: 'join-business',
+    path: '/join/detail',
+    name: 'join-detail',
     component: JoinView
   },
   {
