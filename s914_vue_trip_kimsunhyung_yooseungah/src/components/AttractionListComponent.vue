@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-2" @click="goDetail(attraction.content_id,attraction.latitude,attraction.longitude)">
                         <div class="img-size">
-                            <img :src="attraction.first_image" alt="이미지 준비중" class="w-100">
+                            <img :src="attraction.first_image || 'https://fastly.picsum.photos/id/190/2048/1365.jpg?hmac=NWS1_X_JJ-Edi-9SZRhNwHyjKt1nECckxrGLS8_idjY'" alt="배경" class="w-100">
                         </div>
                     </div>
                     <div class="col" @click="goDetail(attraction.content_id,attraction.latitude,attraction.longitude)">
@@ -23,12 +23,16 @@
                         
                     </div>
                     <div class="d-flex justify-content-center" @click="isLike(attraction.content_id)">
-                        <b-button class="mb-2 button" >
                             <b-icon
-                            icon="hand-thumbs-up-fill"
+                            icon="emoji-heart-eyes-fill"
                             font-scale="2"
+                            v-if="attraction.user_id"
                             />
-                        </b-button>
+                            <b-icon
+                            icon="emoji-heart-eyes"
+                            font-scale="2"
+                            v-else
+                            />
                     </div>
                 </div>
                 <hr>
@@ -49,35 +53,32 @@ export default {
         return{
             sido_name:"",
             content_type_name:"",
-            user_id:"",
             content_id:"",
             attractions: [],
             rows: 100,
-            currentPage: 1
+            currentPage: 1,
+            islike: false
         };
     },
     created(){
-        this.user_id=this.$session.get("user").id;
-        this.getList(this.$route.params.form);
-
+        this.getList();
     },
     computed:{
         
     },
     methods:{
-        getList(form){
-            this.sido_name=form.sido_name;
-            this.content_type_name=form.content_type_name;
+        getList(){
+            this.sido_name=this.$route.query.sido_name;
+            this.content_type_name=this.$route.query.content_type_name;
             
             http.get("/api/attraction/search", {
                     params:{
-                            sido_name: this.sido_name,
-                            content_type_name: this.content_type_name
-                    }
-                        }).then(response => {
+                        sido_name: this.sido_name,
+                        content_type_name: this.content_type_name
+                    }})
+                    .then(response => {
                         this.attractions = response.data;
-                        console.log(this.attractions);
-                        });
+                    });
             
         },
         goDetail(content_id,latitude,longitude){
@@ -85,10 +86,18 @@ export default {
             // this.$router.push('/attractiondetail/'+id);
         },
         isLike(content_id){
-            http.get("/api/attraction/islike/"+content_id).then((response=>{
-                
-                console.log(response.data);
-            }));
+            if(this.$session.get("user") != null && this.$session.get("user").id != '') {
+                http.post("/api/attraction/like", {
+                    content_id,
+                    user_id:null
+                })
+                alert("로그인이 필요한 서비스입니다.");
+                this.$router.push("/login");
+            }
+            else {
+                alert("로그인이 필요한 서비스입니다.");
+                this.$router.push("/login");
+            }
         }
         
     }
@@ -97,22 +106,8 @@ export default {
 </script>
 
 <style>
-    #btn {
-    position: relative;
-    background-color: #f1f3f5;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    font-size: 16px;
-    font-weight: bold;
-    overflow: hidden;
-  }
-  .img-size {
-  /* height: 150px; Adjust the height as per your requirement */
-  object-fit: cover;
+.img-size {
+    /* height: 150px; Adjust the height as per your requirement */
+    object-fit: cover;
 }
 </style>

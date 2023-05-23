@@ -74,7 +74,7 @@
                 else if(this.form.type==null){
                     alert("카테고리를 선택하세요.");
                 }else{
-                    this.$router.push({name:"list",params:{form : { sido_name : this.form.sido, content_type_name: this.form.type}}});
+                    this.$router.push({name:"list", query:{ sido_name : this.form.sido, content_type_name: this.form.type}});
                 }
             }
         }

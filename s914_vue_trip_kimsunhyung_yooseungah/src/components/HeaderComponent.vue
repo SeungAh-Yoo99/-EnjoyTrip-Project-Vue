@@ -122,9 +122,6 @@ a {
 .navbar-dark .navbar-nav .nav-link em {
     color: white;
 }
-a[aria-current="page"] {
-  color: #231f20;
-}
 
 </style>
 

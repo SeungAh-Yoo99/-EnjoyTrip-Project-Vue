@@ -37,7 +37,7 @@ const routes = [
     component: LoginView
   },
   {
-    path: "/attractionlist/:form",
+    path: "/attractionlist",
     name: 'list',
     component: AttractionListView
   },
