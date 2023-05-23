@@ -79,7 +79,6 @@ export default {
             .then(response => {
                 if(response.data.result == "logout success") {
                     this.$session.set("user", this.user_null);
-
                     this.isLoggedIn=false;
                     alert('로그아웃 완료');
                 }
