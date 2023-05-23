@@ -83,10 +83,8 @@ export default {
         },
         goDetail(content_id,latitude,longitude){
             this.$router.push({name:"attractiondetail",params:{attraction:{content_id:content_id,latitude:latitude,longitude:longitude}}});
-            // this.$router.push('/attractiondetail/'+id);
         },
         isLike(content_id){
-<<<<<<< HEAD
             if(this.$session.get("user") != null && this.$session.get("user").id != '') {
                 http.post("/api/attraction/like", {
                     content_id,
@@ -99,13 +97,6 @@ export default {
                 alert("로그인이 필요한 서비스입니다.");
                 this.$router.push("/login");
             }
-=======
-            console.log("좋아요 버튼 클릭 "+ this.user_id+" "+content_id);
-            http.get("/api/attraction/islike/"+content_id).then(response=>{
-                
-                 console.log(response.data.result);
-            });
->>>>>>> 824abe63a9248a33699a2cb7d2653532e96aa240
         }
         
     }
