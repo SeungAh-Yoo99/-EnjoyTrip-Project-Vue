@@ -87,11 +87,9 @@ export default {
         isLike(content_id){
             if(this.$session.get("user") != null && this.$session.get("user").id != '') {
                 http.post("/api/attraction/like", {
-                    content_id,
+                    content_id:content_id,
                     user_id:null
                 })
-                alert("로그인이 필요한 서비스입니다.");
-                this.$router.push("/login");
             }
             else {
                 alert("로그인이 필요한 서비스입니다.");
