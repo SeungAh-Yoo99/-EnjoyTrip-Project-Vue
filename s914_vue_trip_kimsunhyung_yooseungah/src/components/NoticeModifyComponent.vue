@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import http from "@/router/axios-common.js"
+import http from "@/axios/axios-common.js"
 
 export default {
     data(){

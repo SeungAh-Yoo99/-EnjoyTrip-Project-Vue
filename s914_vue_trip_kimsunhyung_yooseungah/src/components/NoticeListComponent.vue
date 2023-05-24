@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import http from "@/router/axios-common.js";
+import http from "@/axios/axios-common.js";
 import dayjs from "dayjs"; 
 export default {
     created(){
