@@ -41,7 +41,6 @@ export default {
     fetchWeather(){
         if (this.lat && this.lng) {
             let fetchUrl = `${this.url_base}weather?lat=${this.lat}&lon=${this.lng}&units=metric&APPID=${this.api_key}`; 
-            console.log("위도 경도"+this.lat+" "+this.lng);
             ///let fetchUrl = `${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`;
             fetch(fetchUrl)
             .then((res) => {

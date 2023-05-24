@@ -30,7 +30,14 @@
               <map-component-vue :lat=attraction.latitude :lng=attraction.longitude :key="`${attraction.latitude}-${attraction.longitude}`"></map-component-vue>
             </div>
             </div>
-        </div> 
+        </div>
+      </div>
+      <hr>
+
+      <div class="location">
+        <div>
+          <review-component-vue :content_id=content_id></review-component-vue>
+        </div>
       </div>
     </div>
 
@@ -42,6 +49,7 @@
 import MapComponentVue from './MapComponent.vue';
 import http from '@/axios/axios-common.js';
 import WeatherComponentVue from './WeatherComponent.vue';
+import ReviewComponentVue from './ReviewComponent.vue';
 export default {
   data() {
     return {
@@ -53,7 +61,8 @@ export default {
   },
   components:{
     MapComponentVue,
-    WeatherComponentVue
+    WeatherComponentVue,
+    ReviewComponentVue
   }
   ,
   created() {
@@ -67,7 +76,6 @@ export default {
       this.content_id = content_id;
       this.latitude=latitude;
       this.longitude=longitude;
-      console.log("여기에 출력 "+content_id+"      "+latitude+" "+longitude);
     },
   },
 };
