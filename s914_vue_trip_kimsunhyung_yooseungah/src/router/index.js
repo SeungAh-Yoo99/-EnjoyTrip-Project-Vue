@@ -19,6 +19,9 @@ import BoardDetailView from '../views/BoardDetailView.vue'
 import BoardModifyView from '../views/BoardModifyView.vue'
 import BoardInputView from '../views/BoardInputView.vue'
 
+import WeatherView from '../views/WeatherView.vue'
+
+
 Vue.use(VueRouter)
 
 // https://v3.router.vuejs.org/kr/guide/advanced/navigation-guards.html
@@ -122,6 +125,11 @@ const routes = [
     name: 'boardinput',
     beforeEnter: onlyAuthUser,
     component: BoardInputView
+  },
+  {
+    path: '/weather',
+    name: 'weather',
+    component: WeatherView
   }
 ]
 

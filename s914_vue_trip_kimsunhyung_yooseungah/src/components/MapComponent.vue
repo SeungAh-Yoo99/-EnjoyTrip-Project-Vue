@@ -1,6 +1,8 @@
 <template>
     <div>
-        <div id="map"></div>
+        <div class="location">지도</div>
+        <div id="map">
+        </div>
     </div>
 </template>
 
@@ -78,6 +80,11 @@ export default {
     #map{
         width:300px;
         height:300px;
+    }
+    .location{
+        text-align:left;
+        font-size:28px;
+        padding-bottom: 5%;
     }
     
 </style>
