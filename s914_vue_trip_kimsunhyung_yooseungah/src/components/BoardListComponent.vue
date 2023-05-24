@@ -61,12 +61,6 @@ export default {
         };
     },
     computed:{
-        isUser(){
-            if(this.$session.get("user") != null && this.$session.get("user").id != '') {
-                return true;
-            }
-            return false;
-        }
     },
     created(){
         this.getBoardList();
@@ -82,8 +76,19 @@ export default {
         },
         addBoard(){
             this.$router.push("/boardinput");
+        },
+        isUser(){
+            http.get("/api/user/islogin", {
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+            }})
+            .then(response => {
+                if(response.data.result == 'success') {
+                    return true;
+                }
+                return false;
+            })
         }
-        
     }
 }
 </script>
