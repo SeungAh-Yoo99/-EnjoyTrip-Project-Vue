@@ -27,14 +27,13 @@
                             icon="suit-heart-fill"
                             font-scale="2"
                             v-if="attraction.user_id != null"
-                            :id="attraction.content_id"
+                            @click="disLike(attraction.content_id)"
                             />
                             <b-icon
                             icon="suit-heart"
                             font-scale="2"
                             v-else
                             @click="isLike(attraction.content_id)"
-                            :id="attraction.content_id"
                             />
                     </div>
                 </div>
@@ -108,9 +107,25 @@ export default {
                         });
                     }
             });
+        },
+        disLike(content_id) {
+            http.delete("/api/attraction/like/" + content_id, {
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                }})
+                .then(response => {
+                    if(response.data.result == 'login') {
+                        alert("로그인이 필요한 페이지입니다..");
+                        this.$router.push("/login");
+                    }
+                    else {
+                        this.attractions.forEach(attraction => {
+                            if(attraction.content_id == content_id) attraction.user_id=null;
+                        });
+                    }
+            });
         }
-        
-    }
+    }   
     
 }
 </script>

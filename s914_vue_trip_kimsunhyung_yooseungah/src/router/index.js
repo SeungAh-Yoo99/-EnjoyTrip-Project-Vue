@@ -6,6 +6,7 @@ import AttractionListView from '../views/AttractionListView.vue'
 import LoginView from '../views/LoginView.vue'
 import RequirmentView from '../views/RequirmentView.vue'
 import JoinView from '../views/JoinView.vue'
+import UserInfoView from '../views/UserInfoView.vue'
 import AttractionDetailView from '../views/AttractionDetailView.vue'
 import NoticeListView from '../views/NoticeListView.vue'
 import NoticeInputView from '../views/NoticeInputView.vue'
@@ -75,6 +76,12 @@ const routes = [
     path: '/join',
     name: 'join',
     component: RequirmentView
+  },
+  {
+    path: '/userInfo',
+    name: 'userInfo',
+    beforeEnter: onlyAuthUser,
+    component: UserInfoView
   },
   {
     path: '/join/detail',

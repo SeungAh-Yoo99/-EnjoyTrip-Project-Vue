@@ -38,7 +38,7 @@
                     <template #button-content>
                         <em>{{userInfo.name}}님</em>
                     </template>
-                    <b-dropdown-item href="#">나의 정보 보기</b-dropdown-item>
+                    <b-dropdown-item><router-link to="/userInfo" class="toUserInfo">나의 정보 보기</router-link></b-dropdown-item>
                     <b-dropdown-item @click="logout">로그아웃</b-dropdown-item>
                 </b-nav-item-dropdown>
             </div> 
@@ -120,11 +120,12 @@ img {
 a {
     color: white;
 }
-
 .navbar-dark .navbar-nav .nav-link em {
     color: white;
 }
-
+a.toUserInfo {
+    color:#212529;
+}
 </style>
 
 
