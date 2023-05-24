@@ -44,7 +44,7 @@
                 <div v-else class="text-center">내용이 없습니다.</div>
                 <div>
                     <div class="button-container">
-                        <button v-if="isUser" class="btn btn-dark w-50">추가</button>
+                        <button v-if="isUser" class="btn btn-dark w-50" @click="addBoard">추가</button>
                     </div>
                 </div>
         </div>
@@ -80,7 +80,10 @@ export default {
         formatDate(date) {
             return dayjs(date).format("YYYY.MM.DD"); // moment.js를 사용하여 날짜를 "YYYY.MM.DD" 형식으로 변환합니다.
         },
-
+        addBoard(){
+            this.$router.push("/boardinput");
+        }
+        
     }
 }
 </script>

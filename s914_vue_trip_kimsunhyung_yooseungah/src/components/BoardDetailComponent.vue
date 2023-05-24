@@ -70,7 +70,7 @@
       <div class="button-container">
         <button v-if="isWriter" class="btn btn-dark w-50" @click="modifyBoard">수정</button>
         <div class="button-space"></div>
-        <button v-if="isWriter" class="btn btn-dark w-50" @click="deleteBoard(board.board_id)">삭제</button>
+        <button v-if="isWriter" class="btn btn-dark w-50" @click="deleteBoard">삭제</button>
         <div class="button-space"></div>
         <button class="btn btn-dark w-50" @click="goToList">목록</button>
       </div>
@@ -84,16 +84,16 @@ export default {
     data(){
         return {
             board:{},
+            board_id:"",
             user_id:"",
         };
     },
     computed:{
         isWriter(){
             if(this.$session.get("user").id==this.user_id){
-                console.log("true");
+                
                 return true;
             }
-            console.log("false");
             return false;
         }
     },
@@ -105,13 +105,22 @@ export default {
             http.get("/api/board/"+board_id).then(response=>{
                 this.board=response.data;
                 this.user_id=this.board.user_id;
+                this.board_id=this.board.board_id;
             });
         },
-        deleteBoard(board_id){
-            http.delete("/api/board/delete",{board_id:board_id}).then(()=>{
+        deleteBoard(){
+          console.log(this.board.board_id);
+            http.put("/api/board/delete",{
+                  board_id:this.board_id,
+                  
+                }, {
+                  withCredentials: true
+                }).then(()=>{
                 alert("삭제완료");
                 this.$router.push("/boardlist");
-            })
+            }).catch(error => {
+                console.log(error)
+            });
         },
         goToList(){
             this.$router.push("/boardlist");

@@ -41,7 +41,7 @@
           <div class="col-md-6">
             <input
               id="creation_date"
-              v-model="creation_date"
+              v-model="board.creation_date"
               type="text"
               readonly
               class="form-control inputBox"

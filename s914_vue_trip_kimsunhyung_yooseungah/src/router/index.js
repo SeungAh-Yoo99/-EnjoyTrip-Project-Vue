@@ -14,6 +14,7 @@ import NoticeModifyView from '../views/NoticeModifyView.vue'
 import BoardListView from '../views/BoardListView.vue'
 import BoardDetailView from '../views/BoardDetailView.vue'
 import BoardModifyView from '../views/BoardModifyView.vue'
+import BoardInputView from '../views/BoardInputView.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -88,7 +89,13 @@ const routes = [
     path: '/boardmodify/:board_id',
     name: 'boardmoidfy',
     component: BoardModifyView
+  },
+  {
+    path: '/boardinput',
+    name: 'boardinput',
+    component: BoardInputView
   }
+
 
 
 ]
