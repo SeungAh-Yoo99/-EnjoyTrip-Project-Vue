@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <b-carousel id="carousel-1" v-model="slide" :interval="0" controls>
+      <b-carousel id="carousel-1" v-model="slide" :interval="5000" controls>
         <!-- Slides with custom text -->
         <b-carousel-slide v-for="(attractionGroup, index) in groupedAttractions" :key="index">
           <template slot="img">

@@ -12,9 +12,15 @@ import NoticeInputView from '../views/NoticeInputView.vue'
 import NoticeDetailView from '../views/NoticeDetailView.vue'
 import NoticeModifyView from '../views/NoticeModifyView.vue'
 import BoardListView from '../views/BoardListView.vue'
+<<<<<<< HEAD
 
 import store from "@/store";
 
+=======
+import BoardDetailView from '../views/BoardDetailView.vue'
+import BoardModifyView from '../views/BoardModifyView.vue'
+import BoardInputView from '../views/BoardInputView.vue'
+>>>>>>> 55ee10041da3f550e3d46aa7fe61e47acedc9531
 Vue.use(VueRouter)
 
 // https://v3.router.vuejs.org/kr/guide/advanced/navigation-guards.html
@@ -101,7 +107,25 @@ const routes = [
     path: '/boardlist',
     name: 'boardlist',
     component: BoardListView
+  },
+  {
+    path: '/boarddetail/:board_id',
+    name: 'boarddetail',
+    component: BoardDetailView
+  },
+  {
+    path: '/boardmodify/:board_id',
+    name: 'boardmoidfy',
+    component: BoardModifyView
+  },
+  {
+    path: '/boardinput',
+    name: 'boardinput',
+    component: BoardInputView
   }
+
+
+
 ]
 
 const router = new VueRouter({

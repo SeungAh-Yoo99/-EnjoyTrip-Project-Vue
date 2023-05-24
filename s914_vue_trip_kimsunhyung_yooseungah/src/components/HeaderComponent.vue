@@ -87,7 +87,7 @@ export default {
                 }
             })
             .catch((exp) => alert(exp + ": 로그아웃 실패"))
-            
+            location.reload();
         }
     },
 }

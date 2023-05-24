@@ -197,6 +197,8 @@ export default {
         if(this.form.id.length > 0) {
             http.post("/api/user/id/check", {
                 id:this.form.id
+            },{
+                withCredentials: true
             })
             .then(response => {
                 if(response.data.result == "available") {
