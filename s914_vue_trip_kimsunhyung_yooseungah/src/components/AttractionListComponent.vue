@@ -22,16 +22,19 @@
                         </div>
                         
                     </div>
-                    <div class="d-flex justify-content-center" @click="isLike(attraction.content_id)">
+                    <div class="d-flex justify-content-center">
                             <b-icon
                             icon="suit-heart-fill"
                             font-scale="2"
                             v-if="attraction.user_id != null"
+                            :id="attraction.content_id"
                             />
                             <b-icon
                             icon="suit-heart"
                             font-scale="2"
                             v-else
+                            @click="isLike(attraction.content_id)"
+                            :id="attraction.content_id"
                             />
                     </div>
                 </div>
@@ -74,32 +77,37 @@ export default {
             this.content_type_name=this.$route.query.content_type_name;
             
             http.get("/api/attraction/search", {
-                    params:{
-                        sido_name: this.sido_name,
-                        content_type_name: this.content_type_name
-                    },
-                    headers: {
-                        "access-token": sessionStorage.getItem("access-token")
-                    }})
-                    .then(response => {
-                        this.attractions = response.data;
-                    });
+                params:{
+                    sido_name: this.sido_name,
+                    content_type_name: this.content_type_name
+                },
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                }})
+                .then(response => {
+                    this.attractions = response.data;
+            });
             
         },
         goDetail(content_id,latitude,longitude){
             this.$router.push({name:"attractiondetail",params:{attraction:{content_id:content_id,latitude:latitude,longitude:longitude}}});
         },
         isLike(content_id){
-            if(this.$session.get("user") != null && this.$session.get("user").id != '') {
-                http.post("/api/attraction/like", {
-                    content_id:content_id,
-                    user_id:null
-                })
-            }
-            else {
-                alert("로그인이 필요한 서비스입니다.");
-                this.$router.push("/login");
-            }
+            http.post("/api/attraction/like/" + content_id, {
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                }})
+                .then(response => {
+                    if(response.data.result == 'login') {
+                        alert("로그인이 필요한 페이지입니다..");
+                        this.$router.push("/login");
+                    }
+                    else {
+                        this.attractions.forEach(attraction => {
+                            if(attraction.content_id == content_id) attraction.user_id=".";
+                        });
+                    }
+            });
         }
         
     }
