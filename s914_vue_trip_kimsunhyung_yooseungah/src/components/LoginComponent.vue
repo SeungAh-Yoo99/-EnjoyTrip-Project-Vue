@@ -60,38 +60,10 @@ export default {
                 let token = sessionStorage.getItem("access-token");
                 if (this.isLogin) {
                     await this.getUserInfo(token);
-                    this.$router.push("/");
+                    if (this.$route.path != "/") this.$router.push("/");
                 }
             }
         },
-<<<<<<< HEAD
-=======
-        submit(){
-            this.validate();
-            if(this.valid){
-                this.submitted = true;
-            }
-        },
-        login(){
-            http.post("/api/user/login", {
-                    id:this.id,
-                    pw:this.pw
-                },{
-                withCredentials: true
-                })
-                .then(response => {
-                    if(response.data.id == this.id) {
-                        this.$session.set("user", response.data);
-                        this.$router.push("/");
-                    }
-                    else {
-                        alert("아이디 또는 비밀번호를 잘못 입력했습니다.");
-                        this.$router.go("/login");
-                    }
-                })
-                .catch((exp) => alert(exp + ": 로그인 실패"));
-        },
->>>>>>> 55ee10041da3f550e3d46aa7fe61e47acedc9531
     }
 }
 </script>
