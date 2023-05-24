@@ -32,11 +32,11 @@
             <b-nav-item href="#">
                 <router-link to='/notice'>공지사항</router-link>
             </b-nav-item>
-            <div v-if="isLoggedIn">
+            <div v-if="userInfo != null">
                 <b-nav-item-dropdown right>
                     <!-- Using 'button-content' slot -->
                     <template #button-content>
-                        <em>{{user_name}}님</em>
+                        <em>{{userInfo.name}}님</em>
                     </template>
                     <b-dropdown-item href="#">나의 정보 보기</b-dropdown-item>
                     <b-dropdown-item @click="logout">로그아웃</b-dropdown-item>
@@ -54,40 +54,38 @@
 </template>
 
 <script>
-import http from "../axios/axios-common.js";
+import { mapState, mapGetters, mapActions } from 'vuex';
+
+const userStore = "userStore";
 
 export default {
+    name: "HeaderComponent",
     data(){
         return {
-            isLoggedIn : false,
-            user_name : '',
-            user_null: {id:''},
         };
     },
-    created() {
-		if(this.$session.get("user") != null && this.$session.get("user").id != '') {
-            this.isLoggedIn=true;
-            this.user_name=this.$session.get("user").name;
-        }
-	},
+    computed: {
+    ...mapState(userStore, ["isLogin", "userInfo"]),
+    ...mapGetters(["checkUserInfo"]),
+    },
     methods: {
         gotoHome() {
             if(this.$route.path !== '/') this.$router.push("/");
         },
+        ...mapActions(userStore, ["userLogout"]),
         logout() {
-            http.get("/api/user/logout")
-            .then(response => {
-                if(response.data.result == "logout success") {
-                    this.$session.set("user", this.user_null);
-                    this.isLoggedIn=false;
-                    alert('로그아웃 완료');
-                }
-                else {
-                    alert('로그아웃 실패'); 
-                }
-            })
-            .catch((exp) => alert(exp + ": 로그아웃 실패"))
-            location.reload();
+            // this.SET_IS_LOGIN(false);
+            // this.SET_USER_INFO(null);
+            // sessionStorage.removeItem("access-token");
+            // if (this.$route.path != "/") this.$router.push({ name: "main" });
+            // console.log(this.userInfo.userid);
+            //vuex actions에서 userLogout 실행(Backend에 저장 된 리프레시 토큰 없애기
+            //+ satate에 isLogin, userInfo 정보 변경)
+            // this.$store.dispatch("userLogout", this.userInfo.userid);
+            this.userLogout(this.userInfo.userid);
+            sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
+            sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
+            if (this.$route.path != "/login") this.$router.push("/login");
         }
     },
 }

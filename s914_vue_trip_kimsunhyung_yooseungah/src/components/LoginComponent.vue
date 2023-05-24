@@ -4,17 +4,17 @@
             <div class="row d-flex justify-content-center">
                 <div class="col-md-6">
                     <div class="card px-5 py-5" id="form1">
-                        <div class="form-data" v-if="!submitted">
-                            <div class="forms-inputs mb-4"> <span>아이디</span> <input type="text" v-model="id" v-bind:class="{'form-control':true, 'is-invalid' : !validId(id) && idBlured}" v-on:blur="idBlured = true">
-                                <div class="invalid-feedback">아이디를 입력해 주세요!</div>
+                        <form>
+                            <div class="form-data">
+                                <div class="forms-inputs mb-4"> <span>아이디</span> <input utocomplete="off" type="text" v-model="user.id" class="form-control" @keyup.enter="login">
+                                    <div class="invalid-feedback">아이디를 입력해 주세요!</div>
+                                </div>
+                                <div class="forms-inputs mb-4"> <span>비밀번호</span> <input autocomplete="off" type="password" v-model="user.pw" class="form-control" @keyup.enter="login">
+                                    <div class="invalid-feedback">비밀번호를 입력해 주세요!</div>
+                                </div>
+                                <div class="mb-3"><input type='button' class="btn btn-dark w-100" value='login' @click="loginCheck"/></div>
                             </div>
-                            <div class="forms-inputs mb-4"> <span>비밀번호</span> <input autocomplete="off" type="password" v-model="pw" v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(pw) && passwordBlured}" v-on:blur="passwordBlured = true">
-                                <div class="invalid-feedback">비밀번호를 입력해 주세요!</div>
-                            </div>
-                            <div class="mb-3"> <button v-on:click.stop.prevent="submit" class="btn btn-dark w-100" @click="login">로그인</button> </div>
-                        </div>
-                        <div class="success-data" v-else>
-                        </div>
+                        </form>
                     </div>
                     <div class="row-vw d-flex link">
                         <router-link to="/join" class="mx-auto">회원가입</router-link> |
@@ -28,61 +28,41 @@
 </template>
 
 <script>
-import http from "../axios/axios-common.js";
+import { mapState, mapActions } from "vuex";
+
+const userStore = "userStore";
 
 export default {
+    name: "UserLogin",
     data() {
         return {
-            id:"",
-            pw:"",
-            idBlured : false,
-            valid : false,
-            submitted : false,
-            passwordBlured:false,
+            user: {
+                id:"",
+                pw:"",
+            },
         }
     },
+    computed: {
+        ...mapState(userStore, ["isLogin", "isLoginError", "userInfo"]),
+    },
     methods:{
-        validate() {
-            this.idBlured = true;
-            this.passwordBlured = true;
-            if( this.validId(this.id) && this.validPassword(this.pw)){
-                this.valid = true;
+        ...mapActions(userStore, ["userConfirm", "getUserInfo"]),
+        // 토큰이 넘어올 때까지 기다려야 하므로 async와 await 붙혀줌
+        async loginCheck() {
+            if(this.user.id.length == 0) {
+                alert("아이디를 입력해 주세요.");
             }
-        },
-        validId(id) {
-            if (id.length > 0) {
-                return true;
+            else if(this.user.pw.length == 0) {
+                alert("비밀번호를 입력해 주세요.");
             }
-        },
-        validPassword(pw) {
-            if (pw.length > 0) {
-                return true;
+            else {
+                await this.userConfirm(this.user);
+                let token = sessionStorage.getItem("access-token");
+                if (this.isLogin) {
+                    await this.getUserInfo(token);
+                    if (this.$route.path != "/") this.$router.push("/");
+                }
             }
-        },
-        submit(){
-            this.validate();
-            if(this.valid){
-                this.submitted = true;
-            }
-        },
-        login(){
-            http.post("/api/user/login", {
-                    id:this.id,
-                    pw:this.pw
-                },{
-                withCredentials: true
-                })
-                .then(response => {
-                    if(response.data.id == this.id) {
-                        this.$session.set("user", response.data);
-                        this.$router.push("/");
-                    }
-                    else {
-                        alert("아이디 또는 비밀번호를 잘못 입력했습니다.");
-                        this.$router.go("/login");
-                    }
-                })
-                .catch((exp) => alert(exp + ": 로그인 실패"));
         },
     }
 }

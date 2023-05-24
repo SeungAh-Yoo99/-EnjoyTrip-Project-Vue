@@ -12,11 +12,38 @@ import NoticeInputView from '../views/NoticeInputView.vue'
 import NoticeDetailView from '../views/NoticeDetailView.vue'
 import NoticeModifyView from '../views/NoticeModifyView.vue'
 import BoardListView from '../views/BoardListView.vue'
+
+import store from "@/store";
+
 import BoardDetailView from '../views/BoardDetailView.vue'
 import BoardModifyView from '../views/BoardModifyView.vue'
 import BoardInputView from '../views/BoardInputView.vue'
+
 import WeatherView from '../views/WeatherView.vue'
+
+
 Vue.use(VueRouter)
+
+// https://v3.router.vuejs.org/kr/guide/advanced/navigation-guards.html
+const onlyAuthUser = async (to, from, next) => {
+  const checkUserInfo = store.getters["userStore/checkUserInfo"];
+  const checkToken = store.getters["userStore/checkToken"];
+  let token = sessionStorage.getItem("access-token");
+  //console.log("로그인 처리 전", checkUserInfo, token);
+
+  if (checkUserInfo != null && token) {
+    //console.log("토큰 유효성 체크하러 가자!!!!");
+    await store.dispatch("userStore/getUserInfo", token);
+  }
+  if (!checkToken || checkUserInfo === null) {
+    alert("로그인이 필요한 페이지입니다..");
+    // next({ name: "login" });
+    router.push({ name: "login" });
+  } else {
+    //console.log("로그인 했다!!!!!!!!!!!!!.");
+    next();
+  }
+};
 
 const routes = [
   {
@@ -64,6 +91,7 @@ const routes = [
   {
     path: '/noticeinput',
     name: 'noticeinput',
+    beforeEnter: onlyAuthUser,
     component: NoticeInputView
   },
   {
@@ -74,6 +102,7 @@ const routes = [
   {
     path: '/noticemodify/:notice_id',
     name: 'noticemodify',
+    beforeEnter: onlyAuthUser,
     component: NoticeModifyView
   },
   {
@@ -89,11 +118,13 @@ const routes = [
   {
     path: '/boardmodify/:board_id',
     name: 'boardmoidfy',
+    beforeEnter: onlyAuthUser,
     component: BoardModifyView
   },
   {
     path: '/boardinput',
     name: 'boardinput',
+    beforeEnter: onlyAuthUser,
     component: BoardInputView
   },
   {
@@ -101,9 +132,6 @@ const routes = [
     name: 'weather',
     component: WeatherView
   }
-
-
-
 ]
 
 const router = new VueRouter({
