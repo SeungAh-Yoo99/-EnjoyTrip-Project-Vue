@@ -24,12 +24,12 @@
                     </div>
                     <div class="d-flex justify-content-center" @click="isLike(attraction.content_id)">
                             <b-icon
-                            icon="emoji-heart-eyes-fill"
+                            icon="suit-heart-fill"
                             font-scale="2"
-                            v-if="attraction.user_id"
+                            v-if="attraction.user_id != null"
                             />
                             <b-icon
-                            icon="emoji-heart-eyes"
+                            icon="suit-heart"
                             font-scale="2"
                             v-else
                             />
@@ -46,8 +46,9 @@
 </template>
 
 <script>
-
 import http from "@/axios/axios-common.js";
+import { mapState } from 'vuex';
+
 export default {
     data(){
         return{
@@ -60,13 +61,14 @@ export default {
             islike: false
         };
     },
+    computed: {
+    ...mapState('userStore', ['userInfo']),
+    },
     created(){
         this.getList();
     },
-    computed:{
-        
-    },
     methods:{
+
         getList(){
             this.sido_name=this.$route.query.sido_name;
             this.content_type_name=this.$route.query.content_type_name;
@@ -75,6 +77,9 @@ export default {
                     params:{
                         sido_name: this.sido_name,
                         content_type_name: this.content_type_name
+                    },
+                    headers: {
+                        "access-token": sessionStorage.getItem("access-token")
                     }})
                     .then(response => {
                         this.attractions = response.data;
