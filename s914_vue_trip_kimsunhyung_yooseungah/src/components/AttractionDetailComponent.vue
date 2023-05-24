@@ -19,10 +19,16 @@
                 {{attraction.overview}}
             </p>
         </div>
+        
         <div class="col-4">
             
-            <div class="map-wrapper">
-            <map-component-vue :lat=attraction.latitude :lng=attraction.longitude :key="`${attraction.latitude}-${attraction.longitude}`"></map-component-vue>
+            <div class="map-wrapper row">
+            <div>
+              <weather-component-vue :lat=attraction.latitude :lng=attraction.longitude :key="`${attraction.latitude}-${attraction.longitude}`"></weather-component-vue>
+            </div>
+            <div class="map">
+              <map-component-vue :lat=attraction.latitude :lng=attraction.longitude :key="`${attraction.latitude}-${attraction.longitude}`"></map-component-vue>
+            </div>
             </div>
         </div> 
       </div>
@@ -35,6 +41,7 @@
 <script>
 import MapComponentVue from './MapComponent.vue';
 import http from '@/axios/axios-common.js';
+import WeatherComponentVue from './WeatherComponent.vue';
 export default {
   data() {
     return {
@@ -45,7 +52,8 @@ export default {
     };
   },
   components:{
-    MapComponentVue
+    MapComponentVue,
+    WeatherComponentVue
   }
   ,
   created() {
@@ -71,5 +79,8 @@ export default {
 }
 p{
     font-size:15px;
+}
+.map{
+  margin-top:5%;
 }
 </style>

@@ -15,6 +15,7 @@ import BoardListView from '../views/BoardListView.vue'
 import BoardDetailView from '../views/BoardDetailView.vue'
 import BoardModifyView from '../views/BoardModifyView.vue'
 import BoardInputView from '../views/BoardInputView.vue'
+import WeatherView from '../views/WeatherView.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -94,6 +95,11 @@ const routes = [
     path: '/boardinput',
     name: 'boardinput',
     component: BoardInputView
+  },
+  {
+    path: '/weather',
+    name: 'weather',
+    component: WeatherView
   }
 
 
