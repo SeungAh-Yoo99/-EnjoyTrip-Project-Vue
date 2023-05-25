@@ -7,7 +7,7 @@
             <div>
                 
                 <div>
-                    <h3>여행지 찾기</h3>
+                    <h3>여행지 찾기ddd</h3>
                 </div>
                 <div class="parent">
                     <b-form v-if="show">
