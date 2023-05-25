@@ -67,9 +67,7 @@ export default {
 </script>
 
 <style>
-body{
-    background: #000
-}
+
 a.mx-auto{
     color: #000;
 }
