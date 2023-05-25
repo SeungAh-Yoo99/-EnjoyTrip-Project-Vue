@@ -44,7 +44,6 @@ const userStore = {
                     if (data.message === "success") {
                         let accessToken = data["access-token"];
                         let refreshToken = data["refresh-token"];
-                        // console.log("login success token created!!!! >> ", accessToken, refreshToken);
                         commit("SET_IS_LOGIN", true);
                         commit("SET_IS_LOGIN_ERROR", false);
                         commit("SET_IS_VALID_TOKEN", true);
@@ -63,26 +62,20 @@ const userStore = {
         },
         async getUserInfo({ commit, dispatch }, token) {
             let decodeToken = jwtDecode(token);
-            // console.log("2. getUserInfo() decodeToken :: ", decodeToken);
             await findById( // token의 유효성 검증
                 decodeToken.userid,
                 ({ data }) => {
                     if (data.message === "success") {
                         commit("SET_USER_INFO", data.userInfo);
-                        console.log("3. getUserInfo data >> ", data);
-                    } else {
-                        console.log("유저 정보 없음!!!!");
                     }
                 },
-                async (error) => { // 사용 불가능 토큰일 경우 서버에서 HttpStatus.UNAUTHORIZE(401) 전달
-                    console.log("getUserInfo() error code [토큰 만료되어 사용 불가능.] ::: ", error.response.status);
+                async () => { // 사용 불가능 토큰일 경우 서버에서 HttpStatus.UNAUTHORIZE(401) 전달
                     commit("SET_IS_VALID_TOKEN", false);
                     await dispatch("tokenRegeneration"); // access token 재발급
                 }
             );
         },
         async tokenRegeneration({ commit, state }) {
-            console.log("토큰 재발급 >> 기존 토큰 정보 : {}", sessionStorage.getItem("access-token"));
             await tokenRegeneration( // 서버로 access token 재발급 요청
                 JSON.stringify(state.userInfo),
                 ({ data }) => {
@@ -100,12 +93,7 @@ const userStore = {
                         // 다시 로그인 전 DB에 저장된 RefreshToken 제거.
                         await logout(
                             state.userInfo.userid,
-                            ({ data }) => {
-                                if (data.message === "success") {
-                                    console.log("리프레시 토큰 제거 성공");
-                                } else {
-                                    console.log("리프레시 토큰 제거 실패");
-                                }
+                            () => {
                                 alert("RefreshToken 기간 만료!!! 다시 로그인해 주세요.");
                                 commit("SET_IS_LOGIN", false);
                                 commit("SET_USER_INFO", null);
@@ -130,8 +118,6 @@ const userStore = {
                         commit("SET_IS_LOGIN", false);
                         commit("SET_USER_INFO", null);
                         commit("SET_IS_VALID_TOKEN", false);
-                    } else {
-                        console.log("유저 정보 없음!!!!");
                     }
                 },
                 (error) => {

@@ -125,7 +125,7 @@
                         <div v-else class="danger">{{errMsgForName}}</div>
                     </div>
                     
-                    <div class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center align-items-end">
                         <b-button class="submit-button" type="submit" variant="outline-primary" @click="submit">가입하기</b-button>
                         <b-button class="reset-button" type="reset" variant="outline-danger">다시 입력</b-button>
                     </div>

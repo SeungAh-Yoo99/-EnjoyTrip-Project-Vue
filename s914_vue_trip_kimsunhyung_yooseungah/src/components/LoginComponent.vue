@@ -17,8 +17,7 @@
                         </form>
                     </div>
                     <div class="row-vw d-flex link">
-                        <router-link to="/join" class="mx-auto">회원가입</router-link> |
-                        <router-link to="/searchPw" class="mx-auto">비밀번호 찾기</router-link>
+                        <router-link to="/join" class="mx-auto">회원가입</router-link>
                     </div>
                 </div>
             </div>
