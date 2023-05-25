@@ -59,15 +59,8 @@ export default {
         this.getReviewList();
     },
     computed:{
-        isUser(){
-            if(this.$session.get("user") != null && this.$session.get("user").id != '') {
-                return true;
-            }
-            return false;
-        }
     },
     methods:{
-        
         getReviewList(){
             console.log(this.content_id);
             http.get("/api/attraction/review/list/"+this.content_id).then(response=>{
@@ -78,6 +71,18 @@ export default {
         formatDate(date) {
             return dayjs(date).format("YYYY.MM.DD"); // moment.js를 사용하여 날짜를 "YYYY.MM.DD" 형식으로 변환합니다.
         },
+        isUser(){
+            http.get("/api/user/islogin", {
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+            }})
+            .then(response => {
+                if(response.data.result == 'success') {
+                    return true;
+                }
+                return false;
+            })
+        }
     }
 
 }

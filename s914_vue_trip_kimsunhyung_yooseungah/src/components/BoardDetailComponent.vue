@@ -25,12 +25,12 @@
       <div class="form-group">
         <div class="row">
           <div class="col-md-1 d-flex align-items-center">
-            <label for="board_id" class="custom-label">번호:</label>
+            <label for="board_id" class="custom-label">작성자:</label>
           </div>
           <div class="col-md-4">
             <input
               id="board_id"
-              v-model="board.board_id"
+              v-model="board.user_id"
               type="text"
               readonly
               class="form-control inputBox"
@@ -80,25 +80,23 @@
 
 <script>
 import http from '../axios/axios-common.js'
+import { mapState } from 'vuex';
+
 export default {
     data(){
         return {
             board:{},
             board_id:"",
             user_id:"",
+            isWriter:false,
         };
     },
     computed:{
-        isWriter(){
-            if(this.$session.get("user").id==this.user_id){
-                
-                return true;
-            }
-            return false;
-        }
+      ...mapState('userStore', ['userInfo']),
     },
     created(){
         this.getBoard(this.$route.params.board_id);
+        this.writerCheck();
     },
     methods:{
         getBoard(board_id){
@@ -112,12 +110,14 @@ export default {
           console.log(this.board.board_id);
             http.put("/api/board/delete",{
                   board_id:this.board_id,
-                  
-                }, {
-                  withCredentials: true
-                }).then(()=>{
-                alert("삭제완료");
-                this.$router.push("/boardlist");
+                },
+                {
+                  headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                }})
+                .then(()=>{
+                  alert("삭제완료");
+                  this.$router.push("/boardlist");
             }).catch(error => {
                 console.log(error)
             });
@@ -127,8 +127,21 @@ export default {
         },
         modifyBoard(){
             this.$router.push("/boardmodify/"+this.board.board_id);
+        },
+        writerCheck(){
+            http.get("/api/user/islogin", {
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+            }})
+            .then(response => {
+                
+                if(response.data.result == 'success' && this.user_id == this.userInfo.id) {
+                    this.isWriter =  true;
+                }else{
+                this.isWriter = false;
+                }
+            })
         }
-
     }
 }
 </script>

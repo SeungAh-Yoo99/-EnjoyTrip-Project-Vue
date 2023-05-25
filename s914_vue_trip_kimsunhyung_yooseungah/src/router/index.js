@@ -35,7 +35,7 @@ const onlyAuthUser = async (to, from, next) => {
     await store.dispatch("userStore/getUserInfo", token);
   }
   if (checkUserInfo === null || !checkToken) {
-    alert("로그인이 필요한 페이지입니다..");
+    alert("로그인이 필요한 페이지입니다.");
     // next({ name: "login" });
     router.push({ name: "login" });
   } else {

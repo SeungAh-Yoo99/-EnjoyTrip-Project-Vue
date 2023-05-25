@@ -79,25 +79,22 @@
 </template>
 
 <script>
-import http from '../axios/axios-common.js'
+import http from '../axios/axios-common.js';
+import { mapState } from 'vuex';
 
 export default {
     data(){
         return {
-            notice:{}
+            notice:{},
+            isAdmin: false,
         };
     },
     computed:{
-        isAdmin(){
-            if(this.$session.get("user").role=="admin"){
-                return true;
-            }
-            return false;
-        }
-    }
-    ,
+      ...mapState('userStore', ['userInfo']),
+    },
     created(){
         this.getNotice(this.$route.params.notice_id);
+        this.checkAdmin();
     },
     methods:{
         getNotice(notice_id){
@@ -106,7 +103,11 @@ export default {
             }));
         },
         deleteNotice(notice_id){
-            http.delete("/api/notice/"+notice_id).then(()=>{
+            http.delete("/api/notice/"+notice_id, {
+              headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+            }})
+            .then(()=>{
                 alert("삭제완료");
                 this.$router.push("/notice");
             })
@@ -116,6 +117,19 @@ export default {
         },
         modify(){
             this.$router.push("/noticemodify/"+this.notice.notice_id);
+        },
+        checkAdmin(){
+            http.get("/api/user/islogin", {
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+            }})
+            .then(response => {
+                if(response.data.result == 'success' && this.userInfo.role == 'admin') {
+                    this.isAdmin = true;
+                }
+                else {
+                  this.isAdmin = false;
+            }})
         }
     }
 }

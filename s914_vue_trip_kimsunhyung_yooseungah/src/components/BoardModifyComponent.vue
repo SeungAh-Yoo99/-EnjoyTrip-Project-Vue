@@ -103,10 +103,12 @@ export default {
                 board_title:this.board_title,
                 board_content:this.board_content
                 }, {
-                  withCredentials: true
-                }).then(()=>{
-                alert("수정완료");
-                this.$router.push("/boardlist");
+                  headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                }})
+                .then(()=>{
+                  alert("수정완료");
+                  this.$router.push("/boardlist");
             }).catch(error => {
                 console.log(error)
             });

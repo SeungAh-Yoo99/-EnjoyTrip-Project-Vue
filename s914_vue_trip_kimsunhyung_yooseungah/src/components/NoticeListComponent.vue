@@ -47,24 +47,23 @@
 
 <script>
 import http from "@/axios/axios-common.js";
-import dayjs from "dayjs"; 
+import dayjs from "dayjs";
+import { mapState } from 'vuex';
+
 export default {
     created(){
         this.selectAll();
+        this.checkAdmin();
     },
     data(){
         return {
             notices:[],
             notice_id: "",
+            isAdmin: false,
         };
     },
     computed:{
-        isAdmin(){
-            if(this.$session.get("user").role=="admin"){
-                return true;
-            }
-            return false;
-        }
+        ...mapState('userStore', ['userInfo']),
     },
     methods:{
         selectAll(){
@@ -79,8 +78,21 @@ export default {
         },
         insert(){
             this.$router.push("/noticeinput");
+        },
+        checkAdmin(){
+            http.get("/api/user/islogin", {
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+            }})
+            .then(response => {
+                if(response.data.result == 'success' && this.userInfo.role == 'admin') {
+                    this.isAdmin =  true;
+                }
+                else {
+                    this.isAdmin =  false;
+                }
+            })
         }
-        
     }
 }
 </script>

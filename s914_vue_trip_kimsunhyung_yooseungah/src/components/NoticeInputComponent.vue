@@ -39,7 +39,11 @@ export default {
             http.post("/api/notice",{
                 notice_title:this.notice_title,
                 content:this.content
-            }).then(()=>{
+            }, {
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+            }})
+            .then(()=>{
                 alert("추가 완료");
                 this.$router.push("/notice");
             });

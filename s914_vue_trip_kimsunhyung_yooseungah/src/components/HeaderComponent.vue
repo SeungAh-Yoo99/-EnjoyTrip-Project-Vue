@@ -24,9 +24,6 @@
                 <router-link to='/categorysearch'>여행지 보기</router-link>
             </b-nav-item>
             <b-nav-item>
-                <router-link to='/'>여행 코스</router-link>
-            </b-nav-item>
-            <b-nav-item>
                 <router-link to='/boardlist'>게시판</router-link>
             </b-nav-item>
             <b-nav-item href="#">

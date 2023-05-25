@@ -40,8 +40,10 @@ export default {
                 board_title:this.board_title,
                 board_content:this.board_content
             }, {
-                  withCredentials: true
-                }).then(()=>{
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+            }})
+            .then(()=>{
                 alert("추가 완료");
                 this.$router.push("/boardlist");
             });

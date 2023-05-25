@@ -109,7 +109,11 @@ export default {
                 content:this.content,
                 notice_title:this.notice_title,
                 notice_id:this.notice_id
-            }).then(()=>{
+            }, {
+              headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+            }})
+            .then(()=>{
                 alert("수정완료");
                 this.$router.push("/notice");
             })

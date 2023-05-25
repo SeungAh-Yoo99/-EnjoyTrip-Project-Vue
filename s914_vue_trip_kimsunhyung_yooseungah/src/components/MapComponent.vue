@@ -54,14 +54,11 @@ export default {
         loadMap(){
             this.latitude=this.lat;
             this.longitude=this.lng;
-            console.log("여기",this.lat,this.lng);
             const container=document.getElementById("map");
             const options={
                 center:new window.kakao.maps.LatLng(this.latitude,this.longitude),
                 level:3,
             };
-            console.log("위치 출력한다"+this.lat+" , "+this.lng);
-            console.log("위치 출력?"+this.latitude+" , "+this.longitude);
             this.map=new window.kakao.maps.Map(container,options);
             this.loadMaker();
         },
