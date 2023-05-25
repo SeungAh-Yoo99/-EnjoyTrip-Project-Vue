@@ -46,49 +46,8 @@
 
 <script>
 import http from '../axios/axios-common.js';
-<<<<<<< HEAD
-import dayjs from "dayjs"; 
-export default {
-    name:'ReviewComponent',
-    props:['content_id'],
-    data(){
-        return {
-            reviews: [],
-        };
-    },
-    created(){
-        this.getReviewList();
-    },
-    computed:{
-    },
-    methods:{
-        getReviewList(){
-            console.log(this.content_id);
-            http.get("/api/attraction/review/list/"+this.content_id).then(response=>{
-                this.reviews=response.data;
-                console.log(this.reviews);
-            })
-        },
-        formatDate(date) {
-            return dayjs(date).format("YYYY.MM.DD"); // moment.js를 사용하여 날짜를 "YYYY.MM.DD" 형식으로 변환합니다.
-        },
-        isUser(){
-            http.get("/api/user/islogin", {
-                headers: {
-                    "access-token": sessionStorage.getItem("access-token")
-            }})
-            .then(response => {
-                if(response.data.result == 'success') {
-                    return true;
-                }
-                return false;
-            })
-        }
-    }
-=======
 import dayjs from 'dayjs';
 import { mapState } from 'vuex';
->>>>>>> 4bfe43ef85481d7628a11abc5b670a0858369fce
 
 export default {
   name: 'ReviewComponent',
