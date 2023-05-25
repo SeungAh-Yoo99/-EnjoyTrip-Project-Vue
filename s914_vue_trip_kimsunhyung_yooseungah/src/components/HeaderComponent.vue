@@ -4,16 +4,7 @@
 
     <b-navbar-brand class="navbar-brand-align">
         <img src="../assets/img/ffycniclogo.png" class="navbar-brand-image logo" @click="gotoHome">
-        <b-nav-form>
-            <b-row no-gutters>
-                <b-col cols="8">
-                    <b-form-input class="mr-sm-2 input-height input-width" placeholder="키워드를 입력하세요."></b-form-input>
-                </b-col>
-                <b-col cols="4" class="pl-2">
-                    <b-button class="w-100 button-height" riant="outline-success" type="submit">검색</b-button>
-                </b-col>
-            </b-row>
-        </b-nav-form>
+        
         
     </b-navbar-brand>
 

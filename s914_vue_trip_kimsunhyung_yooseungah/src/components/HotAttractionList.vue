@@ -1,6 +1,9 @@
 <template>
   <div class="container">
     <div>
+      <h3>인기 여행지 추천</h3>
+    </div>
+    <div>
       <b-carousel id="carousel-1" v-model="slide" :interval="5000" controls>
         <!-- Slides with custom text -->
         <b-carousel-slide v-for="(attractionGroup, index) in groupedAttractions" :key="index">
