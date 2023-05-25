@@ -84,7 +84,6 @@ export default {
 .container {
     font-family: arial;
     font-size: 24px;
-    margin: 100px auto;
 }
 .parent {
     margin:50px auto;
