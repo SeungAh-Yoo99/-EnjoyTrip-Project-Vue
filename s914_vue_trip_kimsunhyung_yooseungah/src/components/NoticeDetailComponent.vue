@@ -2,7 +2,7 @@
   <div class="container">
     <div class="pad"></div>
     <div>
-      <h3>Detail</h3>
+      <h3>공지사항</h3>
     </div>
 
     <div>

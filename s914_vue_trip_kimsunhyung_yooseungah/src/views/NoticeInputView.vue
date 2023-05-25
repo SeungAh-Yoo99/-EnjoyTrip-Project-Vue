@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="d-flex flex-column min-vh-100">
         <header-component-vue></header-component-vue>
         <notice-input-component-vue></notice-input-component-vue>
-        <footer-component-vue></footer-component-vue>
+        <footer-component-vue class="mt-auto"></footer-component-vue>
     </div>
 </template>
 

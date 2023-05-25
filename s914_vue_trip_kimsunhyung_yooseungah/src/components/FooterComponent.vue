@@ -2,8 +2,8 @@
     <footer id="container">
         <div id="contacts">
             <div id="contacts--contact">
-                <p>{{ mail }}</p>
-                <p>{{ phone }}</p>
+                <p>본 사이트의 콘텐츠는 저작권법의 보호를 받는 바 무단 전재, 복사, 배포 등을 금합니다.</p>
+                <p>Copyright©KIMSUNHYUNG&YOOSEUNGAH All Rigths Reserved</p>
             </div>
             <div id="contacts--social">
                 <div><img src="../assets/img/ssafyimg.png" class="profile"></div>
@@ -21,9 +21,7 @@
 export default {
     data(){
         return{
-            mail : 'xavier.seignard+drangies@gmail.com',
-            phone : '06.00.00.00.00',
-            mention : '2023 | mentions légales'
+            mention : '2023 | SSAFY 9th Class14'
         };
     }
 }
@@ -56,7 +54,7 @@ body{
   width:100%;
 }
 #contacts--contact{
-  text-align:right;
+  text-align:left;
 }
 #contacts--social{
   width:20%;

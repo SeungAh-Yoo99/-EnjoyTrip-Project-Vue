@@ -40,13 +40,6 @@
                     </b-form>
                 </div>
 
-                <div class="pad">
-
-                </div>
-                
-                <div>
-                    <h3>인기 여행지 추천</h3>
-                </div>
                 <div class="pad"></div>
             </div>
 
@@ -88,11 +81,11 @@
         margin: 100px auto;
     }
     .parent {
-        margin:50px auto;
+        margin: auto;
         justify-content: center;
         width:100%;
     }
     .pad {
-        margin : 50px;
+        margin-top:5%;
     }
     </style>

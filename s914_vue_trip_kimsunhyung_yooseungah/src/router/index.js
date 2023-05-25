@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import TestView from '../views/TestView.vue'
 import CategoryAttractionView from '../views/CategoryAttractionView.vue'
 import AttractionListView from '../views/AttractionListView.vue'
 import LoginView from '../views/LoginView.vue'
@@ -15,7 +14,6 @@ import NoticeInputView from '../views/NoticeInputView.vue'
 import NoticeDetailView from '../views/NoticeDetailView.vue'
 import NoticeModifyView from '../views/NoticeModifyView.vue'
 import BoardListView from '../views/BoardListView.vue'
-
 import store from "@/store";
 
 import BoardDetailView from '../views/BoardDetailView.vue'
@@ -47,11 +45,7 @@ const onlyAuthUser = async (to, from, next) => {
 };
 
 const routes = [
-  {
-    path: '/',
-    name: 'test',
-    component: TestView
-  },
+
   {
 
     path: '/categorysearch',

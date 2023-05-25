@@ -2,7 +2,7 @@
     <div class="container">
     <div class="pad"></div>
     <div>
-      <h3>게시판 Detail</h3>
+      <h3>게시판</h3>
     </div>
 
     <div>
@@ -93,10 +93,12 @@ export default {
     },
     computed:{
       ...mapState('userStore', ['userInfo']),
+      
     },
     created(){
+        
         this.getBoard(this.$route.params.board_id);
-        this.writerCheck();
+        
     },
     methods:{
         getBoard(board_id){
@@ -104,6 +106,7 @@ export default {
                 this.board=response.data;
                 this.user_id=this.board.user_id;
                 this.board_id=this.board.board_id;
+                this.writerCheck();
             });
         },
         deleteBoard(){
@@ -134,11 +137,11 @@ export default {
                     "access-token": sessionStorage.getItem("access-token")
             }})
             .then(response => {
-                
                 if(response.data.result == 'success' && this.user_id == this.userInfo.id) {
                     this.isWriter =  true;
                 }else{
-                this.isWriter = false;
+                  
+                  this.isWriter = false;
                 }
             })
         }
