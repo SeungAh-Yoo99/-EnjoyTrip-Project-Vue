@@ -14,11 +14,10 @@
                 @sliding-start="onSlideStart"
                 @sliding-end="onSlideEnd"
             >
-                <b-carousel-slide
-                caption="FFYCNIC"
-                text="FFYNIC과 함께 여행을 시작 할까요?"
-                :img-src="require('@/assets/img/광화문.jpg')"
-                ></b-carousel-slide>
+                <b-carousel-slide :img-src="require('@/assets/img/광화문.jpg')">
+                <h1>FFYCNIC</h1>
+                <h2>FFYNIC과 함께 여행을 시작 할까요?</h2><br>
+                </b-carousel-slide>
 
                 <b-carousel-slide :img-src="require('@/assets/img/부산.jpg')">
                 <h1>부산</h1>
@@ -48,6 +47,7 @@
 </template>
 
 <script>
+
     export default {
         data() {
             return {
@@ -66,6 +66,6 @@
     }
 </script>
 
-<style scoped>
+<style>
 
 </style>

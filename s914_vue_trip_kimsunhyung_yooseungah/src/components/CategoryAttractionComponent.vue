@@ -45,46 +45,6 @@
             </div>
             
             <div>
-<<<<<<< HEAD
-                <h3>인기 여행지 추천</h3>
-=======
-                
-                <div>
-                    <h3>여행지 찾기ddd</h3>
-                </div>
-                <div class="parent">
-                    <b-form v-if="show">
-                    <b-row>
-                        <b-col class="col-md-5">
-                            <b-form-group id="input-group-1" label-for="input-1">
-                                <b-form-select
-                                    id="input-1"
-                                    v-model="form.sido"
-                                    :options="sidos"
-                                    required
-                                ></b-form-select>
-                            </b-form-group>
-                        </b-col>
-                    
-                    <b-col class="col-md-5">
-                    <b-form-group id="input-group-2" label-for="input-2">
-                        <b-form-select
-                            id="input-2"
-                            v-model="form.type"
-                            :options="types"
-                            required
-                        ></b-form-select>
-                    </b-form-group>
-                    </b-col>
-                   <b-col class="col-md-2">
-                    <b-button type="button" @click="goAttractionList">검색</b-button>
-                   </b-col>
-                    </b-row>
-                    </b-form>
-                </div>
-
-                <div class="pad"></div>
->>>>>>> 79168a1b374f40af9947a38186cfe3dcd222e8c0
             </div>
             <div class="pad"></div>
         </div>
@@ -117,7 +77,6 @@ export default {
             }
         }
     }
-<<<<<<< HEAD
 }
 </script>
 
@@ -139,22 +98,4 @@ export default {
     height: 38px;
 }
 </style>
-=======
-    </script>
-    
-    <style>
-    .container {
-        font-family: arial;
-        font-size: 24px;
-        margin: 100px auto;
-    }
-    .parent {
-        margin: auto;
-        justify-content: center;
-        width:100%;
-    }
-    .pad {
-        margin-top:5%;
-    }
-    </style>
->>>>>>> 79168a1b374f40af9947a38186cfe3dcd222e8c0
+

@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-<<<<<<< HEAD
 import HomeView from '../views/HomeView.vue'
-=======
->>>>>>> 79168a1b374f40af9947a38186cfe3dcd222e8c0
+
 import CategoryAttractionView from '../views/CategoryAttractionView.vue'
 import AttractionListView from '../views/AttractionListView.vue'
 import LoginView from '../views/LoginView.vue'
@@ -46,15 +44,11 @@ const onlyAuthUser = async (to, from, next) => {
 };
 
 const routes = [
-<<<<<<< HEAD
   {
     path: '/',
     name: 'home',
     component: HomeView
   },
-=======
-
->>>>>>> 79168a1b374f40af9947a38186cfe3dcd222e8c0
   {
 
     path: '/categorysearch',

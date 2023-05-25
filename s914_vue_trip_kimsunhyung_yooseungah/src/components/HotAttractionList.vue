@@ -83,7 +83,7 @@ export default {
 .container {
   font-family: arial;
   font-size: 10px;
-  margin: 0px auto;
+  /* margin: 0px auto; */
 }
 
 .card-img-top {
