@@ -12,13 +12,12 @@
                                 <div class="forms-inputs mb-4"> <span>비밀번호</span> <input autocomplete="off" type="password" v-model="user.pw" class="form-control" @keyup.enter="login">
                                     <div class="invalid-feedback">비밀번호를 입력해 주세요!</div>
                                 </div>
-                                <div class="mb-3"><input type='button' class="btn btn-dark w-100" value='login' @click="loginCheck"/></div>
+                                <div class="mb-3"><input type='button' class="btn btn-dark w-100" value='로그인' @click="loginCheck"/></div>
                             </div>
                         </form>
                     </div>
                     <div class="row-vw d-flex link">
                         <router-link to="/join" class="mx-auto">회원가입</router-link> |
-                        <router-link to="/searchId" class="mx-auto">아이디 찾기</router-link> |
                         <router-link to="/searchPw" class="mx-auto">비밀번호 찾기</router-link>
                     </div>
                 </div>

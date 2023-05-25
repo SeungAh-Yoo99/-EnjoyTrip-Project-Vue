@@ -7,6 +7,8 @@ import LoginView from '../views/LoginView.vue'
 import RequirmentView from '../views/RequirmentView.vue'
 import JoinView from '../views/JoinView.vue'
 import UserInfoView from '../views/UserInfoView.vue'
+import SearchpwView from '../views/SearchpwView.vue'
+import NewpwView from '../views/NewpwView.vue'
 import AttractionDetailView from '../views/AttractionDetailView.vue'
 import NoticeListView from '../views/NoticeListView.vue'
 import NoticeInputView from '../views/NoticeInputView.vue'
@@ -78,15 +80,25 @@ const routes = [
     component: RequirmentView
   },
   {
+    path: '/join/detail',
+    name: 'join-detail',
+    component: JoinView
+  },
+  {
     path: '/userInfo',
     name: 'userInfo',
     beforeEnter: onlyAuthUser,
     component: UserInfoView
   },
   {
-    path: '/join/detail',
-    name: 'join-detail',
-    component: JoinView
+    path: '/searchPw',
+    name: 'searchPw',
+    component: SearchpwView
+  },
+  {
+    path: '/newPw',
+    name: 'newPw',
+    component: NewpwView
   },
   {
     path: '/notice',

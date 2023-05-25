@@ -36,7 +36,7 @@
 
       <div class="location">
         <div>
-          <review-component-vue :content_id=content_id></review-component-vue>
+          <review-component-vue ref="reviewComponent" :content_id=content_id @reviewAdded="refreshReviews"></review-component-vue>
         </div>
       </div>
     </div>
@@ -76,6 +76,9 @@ export default {
       this.content_id = content_id;
       this.latitude=latitude;
       this.longitude=longitude;
+    },
+    refreshReviews() {
+      this.$refs.reviewComponent.getReviewList(); // 자식 컴포넌트의 getReviewList() 메서드를 호출하여 댓글 목록을 다시 불러옵니다.
     },
   },
 };

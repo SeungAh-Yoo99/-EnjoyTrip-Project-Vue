@@ -118,7 +118,7 @@ export default {
 <style scoped>
 .card{
     height: 450px;
-    width: 70%;
+    width: 35%;
 }
 .centered-card{
     display: flex;
